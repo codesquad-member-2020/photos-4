@@ -10,7 +10,7 @@ import UIKit
 
 extension CGFloat {
     
-    static func random() -> CGFloat {
+    static func randomNumber() -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UInt32.max)
     }
     
@@ -18,10 +18,10 @@ extension CGFloat {
 
 extension UIColor {
     
-    static func random() -> UIColor {
-        return UIColor(red:   .random(),
-                       green: .random(),
-                       blue:  .random(),
+    static func generateRandomColor() -> UIColor {
+        return UIColor(red:   .randomNumber(),
+                       green: .randomNumber(),
+                       blue:  .randomNumber(),
                        alpha: 1.0)
     }
     
@@ -35,7 +35,7 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
-        cell.backgroundColor = .random()
+        cell.backgroundColor = .generateRandomColor()
         return cell
     }
     
