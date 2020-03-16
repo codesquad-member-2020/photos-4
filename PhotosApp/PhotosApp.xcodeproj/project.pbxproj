@@ -14,7 +14,6 @@
 		78DE94CA241F4485004201E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DE94C9241F4485004201E3 /* Assets.xcassets */; };
 		78DE94CD241F4485004201E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DE94CB241F4485004201E3 /* LaunchScreen.storyboard */; };
 		78DE94D7241F4A91004201E3 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE94D6241F4A91004201E3 /* CollectionViewDataSource.swift */; };
-		78DE94D9241F4F18004201E3 /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE94D8241F4F18004201E3 /* CollectionViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		78DE94CC241F4485004201E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78DE94CE241F4485004201E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DE94D6241F4A91004201E3 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
-		78DE94D8241F4F18004201E3 /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +61,6 @@
 				78DE94C0241F4484004201E3 /* AppDelegate.swift */,
 				78DE94C2241F4484004201E3 /* SceneDelegate.swift */,
 				78DE94C4241F4484004201E3 /* ViewController.swift */,
-				78DE94D8241F4F18004201E3 /* CollectionViewDelegate.swift */,
 				78DE94D6241F4A91004201E3 /* CollectionViewDataSource.swift */,
 				78DE94C6241F4484004201E3 /* Main.storyboard */,
 				78DE94C9241F4485004201E3 /* Assets.xcassets */,
@@ -146,7 +143,6 @@
 			files = (
 				78DE94C5241F4484004201E3 /* ViewController.swift in Sources */,
 				78DE94C1241F4484004201E3 /* AppDelegate.swift in Sources */,
-				78DE94D9241F4F18004201E3 /* CollectionViewDelegate.swift in Sources */,
 				78DE94C3241F4484004201E3 /* SceneDelegate.swift in Sources */,
 				78DE94D7241F4A91004201E3 /* CollectionViewDataSource.swift in Sources */,
 			);
