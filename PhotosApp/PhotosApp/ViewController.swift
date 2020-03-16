@@ -19,7 +19,6 @@ class ViewController: UIViewController {
         collectionView.dataSource = collectionViewDataSource
         collectionView.delegate = collectionViewDelegate
         collectionView.reloadData()
-        print("Hello, world!")
     }
 
 }
