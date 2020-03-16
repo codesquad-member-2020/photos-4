@@ -27,7 +27,7 @@ extension UIColor {
     
 }
 
-class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
+class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 40

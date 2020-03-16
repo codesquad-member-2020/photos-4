@@ -11,11 +11,11 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private let collectionViewDataSource = CollectionViewDataSource()
+    private let photosDataSource = PhotosDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.dataSource = collectionViewDataSource
+        collectionView.dataSource = photosDataSource
         collectionView.reloadData()
     }
 
