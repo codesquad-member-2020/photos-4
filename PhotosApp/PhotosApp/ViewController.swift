@@ -9,12 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    private let collectionViewDataSource = CollectionViewDataSource()
+    private let collectionViewDelegate = CollectionViewDelegate()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        collectionView.dataSource = collectionViewDataSource
+        collectionView.delegate = collectionViewDelegate
+        collectionView.reloadData()
     }
-
 
 }
 
