@@ -12,6 +12,7 @@ import Photos
 enum Size {
     
     static let photoSize = CGSize(width: 100, height: 100)
+    
 }
 
 enum ReuseIdentifier {
