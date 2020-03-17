@@ -64,6 +64,7 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
     func setupPhotos() {
         requestPhotos()
         startCachingImages()
+        sharePhotoLibraryChanges()
     }
     
     private func requestPhotos() {
@@ -87,7 +88,7 @@ extension PhotosDataSource: PHPhotoLibraryChangeObserver {
         let changedAllphotos = changeInstance.changeDetails(for: allPhotos)
     }
     
-    func sharePhotoLibraryChanges() {
+    private func sharePhotoLibraryChanges() {
         PHPhotoLibrary.shared().register(self)
     }
 

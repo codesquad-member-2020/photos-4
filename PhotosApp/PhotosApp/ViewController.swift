@@ -20,7 +20,6 @@ class ViewController: UIViewController {
             return
         }
         photosDataSource.setupPhotos()
-        photosDataSource.sharePhotoLibraryChanges()
         setupPhotosCollectionView()
         photosCollectionView.reloadData()
     }

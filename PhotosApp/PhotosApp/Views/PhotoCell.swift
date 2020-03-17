@@ -34,4 +34,5 @@ final class PhotoCell: UICollectionViewCell {
         photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
+    
 }
