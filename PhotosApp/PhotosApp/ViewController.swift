@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Photos
 
 class ViewController: UIViewController {
 
@@ -16,9 +15,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard isPhotoAuthorized()
+        guard photosDataSource.isPhotoAuthorized()
             else {
-                return
+            return
         }
         photosDataSource.setupPhotos()
         photosDataSource.sharePhotoLibraryChanges()
@@ -26,26 +25,7 @@ class ViewController: UIViewController {
         photosCollectionView.reloadData()
     }
     
-    private func isPhotoAuthorized() -> Bool {
-        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
-        switch photoAuthorizationStatus {
-        case .authorized:
-            return true
-        case .notDetermined:
-            var isAuthorized = false
-            PHPhotoLibrary.requestAuthorization({ status in
-                switch status {
-                case .authorized:
-                    isAuthorized = true
-                default:
-                    isAuthorized = false
-                }
-            })
-            return isAuthorized
-        default:
-            return false
-        }
-    }
+    
     
     private func setupPhotosCollectionView() {
         photosCollectionView.register(PhotoCell.self,

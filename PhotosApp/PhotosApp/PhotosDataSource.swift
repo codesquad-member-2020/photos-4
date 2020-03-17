@@ -40,6 +40,27 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
         return photoCell
     }
     
+    func isPhotoAuthorized() -> Bool {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+        case .authorized:
+            return true
+        case .notDetermined:
+            var isAuthorized = false
+            PHPhotoLibrary.requestAuthorization({ status in
+                switch status {
+                case .authorized:
+                    isAuthorized = true
+                default:
+                    isAuthorized = false
+                }
+            })
+            return isAuthorized
+        default:
+            return false
+        }
+    }
+    
     func setupPhotos() {
         requestPhotos()
         startCachingImages()
