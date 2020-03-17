@@ -9,7 +9,7 @@
 import UIKit
 
 final class PhotoCell: UICollectionViewCell {
-    
+
     let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,8 +32,10 @@ final class PhotoCell: UICollectionViewCell {
     }
     
     private func setupPhotoImageView() {
-        addSubview(photoImageView)
+        contentView.addSubview(photoImageView)
         photoImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        photoImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
 }
