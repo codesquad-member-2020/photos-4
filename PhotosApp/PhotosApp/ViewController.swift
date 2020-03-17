@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var photosCollectionView: UICollectionView!
     private let photosDataSource = PhotosDataSource()
     
@@ -20,10 +20,10 @@ class ViewController: UIViewController {
             else {
                 return
         }
-        
         photosDataSource.requestPhotos()
         setupPhotosCollectionView()
         photosCollectionView.reloadData()
+        sharePhotoLibraryChanges()
     }
     
     private func isPhotoAuthorized() -> Bool {
@@ -51,6 +51,18 @@ class ViewController: UIViewController {
         photosCollectionView.register(PhotoCell.self,
                                       forCellWithReuseIdentifier: ReuseIdentifier.photosCell)
         photosCollectionView.dataSource = photosDataSource
+    }
+    
+}
+
+extension ViewController: PHPhotoLibraryChangeObserver {
+    
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        
+    }
+    
+    private func sharePhotoLibraryChanges() {
+        PHPhotoLibrary.shared().register(self)
     }
     
 }
