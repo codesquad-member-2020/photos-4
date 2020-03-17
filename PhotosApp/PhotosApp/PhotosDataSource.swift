@@ -11,6 +11,8 @@ import Photos
 
 class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
+    private var allPhotos: PHFetchResult<PHAsset>!
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let numberOfItems = 40
         return numberOfItems
@@ -20,6 +22,10 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
         let reuseIdentifier = ReuseIdentifier.photosCell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
         return cell
+    }
+    
+    func requestPhotos() {
+        allPhotos = PHAsset.fetchAssets(with: .image, options: nil)
     }
     
 }
