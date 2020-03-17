@@ -14,8 +14,7 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
     private var allPhotos: PHFetchResult<PHAsset>!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let numberOfItems = 40
-        return numberOfItems
+        return allPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
