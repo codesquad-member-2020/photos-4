@@ -19,15 +19,11 @@ final class PhotoCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        setupPhotoImageView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setup()
-    }
-    
-    private func setup() {
         setupPhotoImageView()
     }
     
