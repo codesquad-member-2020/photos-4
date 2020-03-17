@@ -9,25 +9,6 @@
 import UIKit
 import Photos
 
-extension CGFloat {
-    
-    static func randomNumber() -> CGFloat {
-        return CGFloat(arc4random()) / CGFloat(UInt32.max)
-    }
-    
-}
-
-extension UIColor {
-    
-    static func generateRandomColor() -> UIColor {
-        return UIColor(red:   .randomNumber(),
-                       green: .randomNumber(),
-                       blue:  .randomNumber(),
-                       alpha: 1.0)
-    }
-    
-}
-
 class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
