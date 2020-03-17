@@ -10,31 +10,25 @@ import UIKit
 
 final class PhotoCell: UICollectionViewCell {
 
+    @IBOutlet weak var photoImageView: UIImageView!
     static let identifier = "photoCell"
 
-    let photoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupPhotoImageView()
+        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupPhotoImageView()
+        
     }
     
-    private func setupPhotoImageView() {
-        contentView.addSubview(photoImageView)
-        photoImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+    func setPhoto(image: UIImage?) {
+        guard let photoImage = image
+            else {
+            return
+        }
+        photoImageView.image = photoImage
     }
     
 }

@@ -25,8 +25,6 @@ class ViewController: UIViewController {
     }
     
     private func setupPhotosCollectionView() {
-        photosCollectionView.register(PhotoCell.self,
-                                      forCellWithReuseIdentifier: PhotoCell.identifier)
         photosCollectionView.dataSource = photosDataSource
     }
     

@@ -31,7 +31,7 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
         
         let asset = allPhotos.object(at: indexPath.item)
         imageManager.requestImage(for: asset, targetSize: Size.photoSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
-            photoCell.photoImageView.image = image
+            photoCell.setPhoto(image: image)
         })
         return photoCell
     }
