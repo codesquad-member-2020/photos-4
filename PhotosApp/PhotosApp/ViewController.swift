@@ -20,7 +20,7 @@ class ViewController: UIViewController {
             else {
                 return
         }
-        photosDataSource.requestPhotos()
+        photosDataSource.setupPhotos()
         setupPhotosCollectionView()
         photosCollectionView.reloadData()
         sharePhotoLibraryChanges()
