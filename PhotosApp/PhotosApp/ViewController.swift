@@ -24,11 +24,9 @@ class ViewController: UIViewController {
         photosCollectionView.reloadData()
     }
     
-    
-    
     private func setupPhotosCollectionView() {
         photosCollectionView.register(PhotoCell.self,
-                                      forCellWithReuseIdentifier: ReuseIdentifier.photosCell)
+                                      forCellWithReuseIdentifier: PhotoCell.identifier)
         photosCollectionView.dataSource = photosDataSource
     }
     

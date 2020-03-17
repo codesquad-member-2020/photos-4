@@ -10,6 +10,8 @@ import UIKit
 
 final class PhotoCell: UICollectionViewCell {
 
+    static let identifier = "photoCell"
+    
     let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

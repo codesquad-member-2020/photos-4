@@ -15,11 +15,6 @@ enum Size {
     
 }
 
-enum ReuseIdentifier {
-    
-    static let photosCell = "photosCell"
-    
-}
 
 class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
@@ -31,7 +26,7 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let reuseIdentifier = ReuseIdentifier.photosCell
+        let reuseIdentifier = PhotoCell.identifier
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
         
         let asset = allPhotos.object(at: indexPath.item)
