@@ -11,19 +11,19 @@ import Photos
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var photosCollectionView: UICollectionView!
     private let photosDataSource = PhotosDataSource()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if isPhotoAuthorized() {
-            photosDataSource.requestPhotos()
+        guard isPhotoAuthorized()
+            else {
+                return
         }
         
-        collectionView.register(PhotoCell.self,
-                                forCellWithReuseIdentifier: ReuseIdentifier.photosCell)
-        collectionView.dataSource = photosDataSource
-        collectionView.reloadData()
+        photosDataSource.requestPhotos()
+        setupPhotosCollectionView()
+        photosCollectionView.reloadData()
     }
     
     private func isPhotoAuthorized() -> Bool {
@@ -46,5 +46,11 @@ class ViewController: UIViewController {
             return false
         }
     }
-
+    
+    private func setupPhotosCollectionView() {
+        photosCollectionView.register(PhotoCell.self,
+                                      forCellWithReuseIdentifier: ReuseIdentifier.photosCell)
+        photosCollectionView.dataSource = photosDataSource
+    }
+    
 }

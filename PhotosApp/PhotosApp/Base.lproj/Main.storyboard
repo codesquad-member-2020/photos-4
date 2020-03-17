@@ -49,7 +49,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Gcg-6E-FcN"/>
                     <connections>
-                        <outlet property="collectionView" destination="gOC-kb-gwA" id="08B-4S-yQI"/>
+                        <outlet property="photosCollectionView" destination="gOC-kb-gwA" id="08B-4S-yQI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
