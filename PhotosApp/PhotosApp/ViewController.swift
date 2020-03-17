@@ -21,9 +21,9 @@ class ViewController: UIViewController {
                 return
         }
         photosDataSource.setupPhotos()
+        photosDataSource.sharePhotoLibraryChanges()
         setupPhotosCollectionView()
         photosCollectionView.reloadData()
-        sharePhotoLibraryChanges()
     }
     
     private func isPhotoAuthorized() -> Bool {
@@ -51,18 +51,6 @@ class ViewController: UIViewController {
         photosCollectionView.register(PhotoCell.self,
                                       forCellWithReuseIdentifier: ReuseIdentifier.photosCell)
         photosCollectionView.dataSource = photosDataSource
-    }
-    
-}
-
-extension ViewController: PHPhotoLibraryChangeObserver {
-    
-    func photoLibraryDidChange(_ changeInstance: PHChange) {
-        
-    }
-    
-    private func sharePhotoLibraryChanges() {
-        PHPhotoLibrary.shared().register(self)
     }
     
 }

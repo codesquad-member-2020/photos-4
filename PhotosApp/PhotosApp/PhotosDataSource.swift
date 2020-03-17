@@ -9,6 +9,17 @@
 import UIKit
 import Photos
 
+enum Size {
+    
+    static let photoSize = CGSize(width: 100, height: 100)
+}
+
+enum ReuseIdentifier {
+    
+    static let photosCell = "photosCell"
+    
+}
+
 class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
     private var allPhotos: PHFetchResult<PHAsset>!
@@ -21,6 +32,7 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let reuseIdentifier = ReuseIdentifier.photosCell
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
+        
         let asset = allPhotos.object(at: indexPath.item)
         imageManager.requestImage(for: asset, targetSize: Size.photoSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
             photoCell.photoImageView.image = image
@@ -48,13 +60,14 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
 }
 
-enum Size {
+extension PhotosDataSource: PHPhotoLibraryChangeObserver {
     
-    static let photoSize = CGSize(width: 100, height: 100)
-}
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        let changedAllphotos = changeInstance.changeDetails(for: allPhotos)
+    }
+    
+    func sharePhotoLibraryChanges() {
+        PHPhotoLibrary.shared().register(self)
+    }
 
-enum ReuseIdentifier {
-    
-    static let photosCell = "photosCell"
-    
 }
