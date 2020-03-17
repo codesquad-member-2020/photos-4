@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A83419B2420A72100F20FAA /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A83419A2420A72100F20FAA /* PhotoCell.swift */; };
 		78DE94C1241F4484004201E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE94C0241F4484004201E3 /* AppDelegate.swift */; };
 		78DE94C3241F4484004201E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE94C2241F4484004201E3 /* SceneDelegate.swift */; };
 		78DE94C5241F4484004201E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE94C4241F4484004201E3 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A83419A2420A72100F20FAA /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		78DE94BD241F4484004201E3 /* PhotosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DE94C0241F4484004201E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78DE94C2241F4484004201E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				78DE94C2241F4484004201E3 /* SceneDelegate.swift */,
 				78DE94C4241F4484004201E3 /* ViewController.swift */,
 				78DE94D6241F4A91004201E3 /* PhotosDataSource.swift */,
+				5A83419A2420A72100F20FAA /* PhotoCell.swift */,
 				78DE94C6241F4484004201E3 /* Main.storyboard */,
 				78DE94C9241F4485004201E3 /* Assets.xcassets */,
 				78DE94CB241F4485004201E3 /* LaunchScreen.storyboard */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78DE94C5241F4484004201E3 /* ViewController.swift in Sources */,
+				5A83419B2420A72100F20FAA /* PhotoCell.swift in Sources */,
 				78DE94C1241F4484004201E3 /* AppDelegate.swift in Sources */,
 				78DE94C3241F4484004201E3 /* SceneDelegate.swift in Sources */,
 				78DE94D7241F4A91004201E3 /* PhotosDataSource.swift in Sources */,

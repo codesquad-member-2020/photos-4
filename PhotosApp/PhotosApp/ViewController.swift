@@ -15,6 +15,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: "photosCell")
         collectionView.dataSource = photosDataSource
         collectionView.reloadData()
     }
