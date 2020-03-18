@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ViewController: UIViewController {
+class PhotosViewController: UIViewController {
 
     @IBOutlet weak var photosCollectionView: UICollectionView!
     private let photosDataSource = PhotosDataSource()
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: PhotosDataSourceDelegate {
+extension PhotosViewController: PhotosDataSourceDelegate {
     
     func allPhotosDidChange(changes: PHFetchResultChangeDetails<PHAsset>) {
         if changes.hasIncrementalChanges {
