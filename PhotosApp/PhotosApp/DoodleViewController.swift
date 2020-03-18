@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DoodleViewController: UIViewController {
+final class DoodleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

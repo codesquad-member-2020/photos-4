@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class PhotosViewController: UIViewController {
+final class PhotosViewController: UIViewController {
 
     @IBOutlet weak var photosCollectionView: UICollectionView!
     private let photosDataSource = PhotosDataSource()
