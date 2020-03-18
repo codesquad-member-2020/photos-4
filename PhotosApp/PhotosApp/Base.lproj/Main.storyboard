@@ -61,7 +61,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Photos" id="Gcg-6E-FcN"/>
+                    <navigationItem key="navigationItem" title="Photos" id="Gcg-6E-FcN">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="OCK-JH-fmz"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="photosCollectionView" destination="gOC-kb-gwA" id="08B-4S-yQI"/>
                     </connections>
