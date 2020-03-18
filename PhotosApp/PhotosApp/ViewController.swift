@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class ViewController: UIViewController {
 
@@ -26,6 +27,32 @@ class ViewController: UIViewController {
     
     private func setupPhotosCollectionView() {
         photosCollectionView.dataSource = photosDataSource
+    }
+    
+}
+
+extension ViewController: PhotosDataSourceDelegate {
+    
+    func allPhotosDidChange(changes: PHFetchResultChangeDetails<PHAsset>) {
+        if changes.hasIncrementalChanges {
+            photosCollectionView.performBatchUpdates({
+                if let removed = changes.removedIndexes, removed.count > 0 {
+                    photosCollectionView.deleteItems(at: removed.map { IndexPath(item: $0, section: photosDataSource.photosSectionIndex) })
+                }
+                if let inserted = changes.insertedIndexes, inserted.count > 0 {
+                    photosCollectionView.insertItems(at: inserted.map { IndexPath(item: $0, section: photosDataSource.photosSectionIndex) })
+                }
+                if let changed = changes.changedIndexes, changed.count > 0 {
+                    photosCollectionView.reloadItems(at: changed.map { IndexPath(item: $0, section: photosDataSource.photosSectionIndex) })
+                }
+                changes.enumerateMoves { [weak self] fromIndex, toIndex in
+                    self?.photosCollectionView.moveItem(at: IndexPath(item: fromIndex, section: self?.photosDataSource.photosSectionIndex ?? 0),
+                                                        to: IndexPath(item: toIndex, section: self?.photosDataSource.photosSectionIndex ?? 0))
+                }
+            })
+        } else {
+            photosCollectionView.reloadData()
+        }
     }
     
 }

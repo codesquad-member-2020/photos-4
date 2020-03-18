@@ -11,6 +11,7 @@ import UIKit
 final class PhotoCell: UICollectionViewCell {
 
     @IBOutlet weak var photoImageView: UIImageView!
+    
     static let identifier = "photoCell"
 
     override init(frame: CGRect) {
