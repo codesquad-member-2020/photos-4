@@ -41,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A83419C2422018200F20FAA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				78DE94D6241F4A91004201E3 /* PhotosDataSource.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		78AD6AFD2420BD3F00976C13 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -68,11 +76,11 @@
 		78DE94BF241F4484004201E3 /* PhotosApp */ = {
 			isa = PBXGroup;
 			children = (
+				5A83419C2422018200F20FAA /* Models */,
 				78AD6AFD2420BD3F00976C13 /* Views */,
 				78DE94C0241F4484004201E3 /* AppDelegate.swift */,
 				78DE94C2241F4484004201E3 /* SceneDelegate.swift */,
 				78DE94C4241F4484004201E3 /* ViewController.swift */,
-				78DE94D6241F4A91004201E3 /* PhotosDataSource.swift */,
 				78DE94C6241F4484004201E3 /* Main.storyboard */,
 				78DE94C9241F4485004201E3 /* Assets.xcassets */,
 				78DE94CB241F4485004201E3 /* LaunchScreen.storyboard */,
