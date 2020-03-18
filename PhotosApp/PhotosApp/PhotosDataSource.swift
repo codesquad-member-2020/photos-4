@@ -26,7 +26,8 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
+        let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier:
+            PhotoCell.identifier, for:indexPath) as! PhotoCell
         
         let asset = allPhotos.object(at: indexPath.item)
         imageManager.requestImage(for: asset, targetSize: Size.photoSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
@@ -34,6 +35,10 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
         })
         return photoCell
     }
+    
+}
+
+extension PhotosDataSource {
     
     func isPhotoAuthorized() -> Bool {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
