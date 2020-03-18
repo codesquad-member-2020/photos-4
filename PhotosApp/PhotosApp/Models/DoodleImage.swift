@@ -21,13 +21,3 @@ struct DoodleImage: Codable {
     }
     
 }
-
-extension Date {
-    
-    static let dateFormatter : DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        return formatter
-    }()
-    
-}

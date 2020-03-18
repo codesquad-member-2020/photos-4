@@ -12,7 +12,7 @@ class Util {
     
     static func decodeJSONData<T>(from urlString: String, type: T.Type, completion: @escaping (T?) -> ())
         where T: Decodable {
-            excuteURLSession(from: urlString) { (data) in
+            Network.excuteURLSession(from: urlString) { (data) in
                 if let data = data {
                     do {
                         let T = try JSONDecoder().decode(T.self, from: data)
