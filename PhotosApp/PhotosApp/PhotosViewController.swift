@@ -13,10 +13,10 @@ final class PhotosViewController: UIViewController {
 
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBAction func touchUpAddButton(_ sender: UIBarButtonItem) {
-        let doodleViewController = DoodleViewController()
+        let doodleViewController = DoodleViewController(collectionViewLayout: UICollectionViewLayout())
         let doodleNavigationController = UINavigationController(rootViewController: doodleViewController)
         doodleNavigationController.modalPresentationStyle = .fullScreen
-        self.present(doodleNavigationController, animated: false, completion: nil)
+        self.present(doodleNavigationController, animated: true, completion: nil)
     }
     
     private let photosDataSource = PhotosDataSource()
