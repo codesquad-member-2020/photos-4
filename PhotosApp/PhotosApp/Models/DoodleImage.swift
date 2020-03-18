@@ -13,5 +13,13 @@ struct DoodleImage: Codable {
     private let order: Int
     private let imageURL: URL
     private let date: Date
+        
+    enum CodingKeys: String, CodingKey {
+        case order = "title"
+        case imageURL = "image"
+        case date
+    }
     
 }
+
+
