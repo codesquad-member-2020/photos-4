@@ -48,25 +48,24 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
 
 extension PhotosDataSource {
     
-    func isPhotoAuthorized() -> Bool {
+    func isPhotoAuthorized(completion: @escaping (Bool) -> ()) -> Bool {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         switch photoAuthorizationStatus {
         case .authorized:
             return true
         case .notDetermined:
-            var isAuthorized = false
             PHPhotoLibrary.requestAuthorization({ status in
                 switch status {
                 case .authorized:
-                    isAuthorized = true
+                    completion(true)
                 default:
-                    isAuthorized = false
+                    completion(false)
                 }
             })
-            return isAuthorized
         default:
             return false
         }
+        return false
     }
     
     func setupPhotos() {
