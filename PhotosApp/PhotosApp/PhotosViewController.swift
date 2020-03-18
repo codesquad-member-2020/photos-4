@@ -12,6 +12,13 @@ import Photos
 final class PhotosViewController: UIViewController {
 
     @IBOutlet weak var photosCollectionView: UICollectionView!
+    @IBAction func touchUpAddButton(_ sender: UIBarButtonItem) {
+        let doodleViewController = DoodleViewController()
+        let doodleNavigationController = UINavigationController(rootViewController: doodleViewController)
+        doodleNavigationController.modalPresentationStyle = .fullScreen
+        self.present(doodleNavigationController, animated: false, completion: nil)
+    }
+    
     private let photosDataSource = PhotosDataSource()
     
     override func viewDidLoad() {

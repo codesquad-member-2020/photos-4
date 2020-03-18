@@ -20,7 +20,7 @@ final class DoodleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        decodeDoodleImagesJSONData()
     }
     
     private func decodeDoodleImagesJSONData() {
