@@ -15,7 +15,7 @@ enum URLInfo {
 }
 
 final class DoodleViewController: UIViewController {
-
+    
     private var doodleImages: [DoodleImage]?
     
     override func viewDidLoad() {
@@ -24,12 +24,12 @@ final class DoodleViewController: UIViewController {
     }
     
     private func decodeDoodleImagesJSONData() {
-        guard let doodles = Util.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
-                                                type: [DoodleImage].self)
-            else {
-                return
+        Util.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
+                            type: [DoodleImage].self) { doodleImages in
+                                if let doodleImages = doodleImages {
+                                    self.doodleImages = doodleImages
+                                }
         }
-        doodleImages = doodles
     }
     
 }
