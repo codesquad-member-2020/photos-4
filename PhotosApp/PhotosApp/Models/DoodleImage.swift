@@ -10,9 +10,9 @@ import Foundation
 
 struct DoodleImage: Codable {
     
-    private let order: Int
+    private let order: String
     private let imageURL: URL
-    private let date: Date
+    private let date: String
     
     enum CodingKeys: String, CodingKey {
         case order = "title"
