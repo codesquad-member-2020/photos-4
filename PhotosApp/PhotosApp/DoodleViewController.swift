@@ -8,21 +8,28 @@
 
 import UIKit
 
-final class DoodleViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        processJSONData(from: URLInfo.addressAboutDoodleDatas)
-    }
-
-    private func processJSONData(from urlString: String) {
-        
-    }
-    
-}
-
 enum URLInfo {
     
     static let addressAboutDoodleDatas = "https://public.codesquad.kr/jk/doodle.json"
+    
+}
+
+final class DoodleViewController: UIViewController {
+
+    private var doodleImages: [DoodleImage]?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    private func decodeDoodleImagesJSONData() {
+        guard let doodles = Util.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
+                                                type: [DoodleImage].self)
+            else {
+                return
+        }
+        doodleImages = doodles
+    }
     
 }
