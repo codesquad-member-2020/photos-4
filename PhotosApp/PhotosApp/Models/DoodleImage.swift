@@ -13,7 +13,7 @@ struct DoodleImage: Codable {
     private let order: Int
     private let imageURL: URL
     private let date: Date
-        
+    
     enum CodingKeys: String, CodingKey {
         case order = "title"
         case imageURL = "image"
@@ -22,4 +22,12 @@ struct DoodleImage: Codable {
     
 }
 
-
+extension Date {
+    
+    static let dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        return formatter
+    }()
+    
+}
