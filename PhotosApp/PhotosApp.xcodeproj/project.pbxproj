@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A83419B2420A72100F20FAA /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A83419A2420A72100F20FAA /* PhotoCell.swift */; };
-		5A8341A0242211C500F20FAA /* DoodleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A83419F242211C500F20FAA /* DoodleImage.swift */; };
+		5A8341A0242211C500F20FAA /* DoodleImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A83419F242211C500F20FAA /* DoodleImageInfo.swift */; };
 		5A8341A62422460B00F20FAA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341A52422460B00F20FAA /* Network.swift */; };
 		5A8341A92422FF9E00F20FAA /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341A82422FF9E00F20FAA /* Notification.swift */; };
 		5A8341AD2423072500F20FAA /* DataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341AC2423072500F20FAA /* DataDecoder.swift */; };
@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		5A83419A2420A72100F20FAA /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
-		5A83419F242211C500F20FAA /* DoodleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleImage.swift; sourceTree = "<group>"; };
+		5A83419F242211C500F20FAA /* DoodleImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleImageInfo.swift; sourceTree = "<group>"; };
 		5A8341A52422460B00F20FAA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		5A8341A82422FF9E00F20FAA /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		5A8341AC2423072500F20FAA /* DataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDecoder.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 				78DE94D6241F4A91004201E3 /* PhotosDataSource.swift */,
 				78928E89242316CA00FF99DD /* DoodleDataSource.swift */,
 				5A8341AE242307B300F20FAA /* DoodleImageManager.swift */,
-				5A83419F242211C500F20FAA /* DoodleImage.swift */,
+				5A83419F242211C500F20FAA /* DoodleImageInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -227,7 +227,7 @@
 				5A8341A92422FF9E00F20FAA /* Notification.swift in Sources */,
 				78321E1324221B4D00EA370C /* DoodleViewController.swift in Sources */,
 				78928E8A242316CA00FF99DD /* DoodleDataSource.swift in Sources */,
-				5A8341A0242211C500F20FAA /* DoodleImage.swift in Sources */,
+				5A8341A0242211C500F20FAA /* DoodleImageInfo.swift in Sources */,
 				78DE94D7241F4A91004201E3 /* PhotosDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

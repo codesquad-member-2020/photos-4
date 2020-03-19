@@ -10,7 +10,7 @@ import Foundation
 
 class DoodleImageManager {
     
-    private var doodleImages: [DoodleImage]?
+    private var doodleImages: [DoodleImageInfo]?
     var doodleImageDatas = [Data]()
     var count: Int? {
         return doodleImages?.count
@@ -18,7 +18,7 @@ class DoodleImageManager {
     
     func decodeDoodleImagesJSONData() {
         DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
-                                   type: [DoodleImage].self,
+                                   type: [DoodleImageInfo].self,
                                    dateDecodingStrategy: .formatted(DateFormatter.yyyyMMdd)) { doodleImages in
                                 if let doodleImages = doodleImages {
                                     self.doodleImages = doodleImages
