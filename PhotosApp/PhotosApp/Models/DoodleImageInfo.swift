@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DoodleImage: Codable {
+struct DoodleImageInfo: Codable {
     
     private let order: String
     private let date: Date

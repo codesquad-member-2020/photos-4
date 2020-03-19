@@ -31,6 +31,7 @@ final class DoodleCell: UICollectionViewCell, ReusableView {
                 return
         }
         doodleImageView.image = doodleImage
+        contentView.addSubview(doodleImageView)
     }
     
 }
