@@ -11,8 +11,11 @@ import Foundation
 struct DoodleImage: Codable {
     
     private let order: String
-    private let imageURL: URL
     private let date: Date
+    private let imageURL: URL
+    var imageURLString: String {
+        return imageURL.absoluteString
+    }
     
     enum CodingKeys: String, CodingKey {
         case order = "title"

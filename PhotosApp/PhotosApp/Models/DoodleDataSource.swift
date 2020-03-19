@@ -17,12 +17,15 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCell.reuseIdentifier, for: indexPath)
+        let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
+            DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
+        doodleCell.setPhoto(image: UIImage(data: doodleImageManager.doodleImageDatas[indexPath.item]) ?? nil)
         return doodleCell
     }
     
-    func requestPhotos() {
+    func setupPhotos() {
         doodleImageManager.decodeDoodleImagesJSONData()
+        doodleImageManager.downloadImages()
     }
     
 }

@@ -20,7 +20,8 @@ final class DoodleViewController: UICollectionViewController {
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
-        collectionView.register(DoodleCell.self, forCellWithReuseIdentifier: DoodleCell.reuseIdentifier)
+        collectionView.register(DoodleCell.self, forCellWithReuseIdentifier:
+            DoodleCell.reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +30,7 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doodleDataSource.requestPhotos()
+        doodleDataSource.setupPhotos()
         collectionView.dataSource = doodleDataSource
         setupDoodleViewController()
     }
