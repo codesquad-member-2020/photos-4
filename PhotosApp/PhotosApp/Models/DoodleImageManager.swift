@@ -16,8 +16,10 @@ class DoodleImageManager {
     }
     
     func decodeDoodleImagesJSONData() {
+        
         DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
-                            type: [DoodleImage].self) { doodleImages in
+                                   type: [DoodleImage].self,
+                                   dateDecodingStrategy: .formatted(DateFormatter.yyyyMMdd)) { doodleImages in
                                 if let doodleImages = doodleImages {
                                     self.doodleImages = doodleImages
                                 }

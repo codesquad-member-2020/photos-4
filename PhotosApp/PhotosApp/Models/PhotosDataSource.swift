@@ -16,20 +16,20 @@ enum Size {
 }
 
 class PhotosDataSource: NSObject, UICollectionViewDataSource {
-
-    private var allPhotos: PHFetchResult<PHAsset>!
+    
+    private var userLibraryPhotos: PHFetchResult<PHAsset>!
     private let imageManager = PHCachingImageManager()
     let photosSectionIndex = 0
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allPhotos.count
+        return userLibraryPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier:
             PhotoCell.reuseIdentifier, for:indexPath) as! PhotoCell
         
-        let asset = allPhotos.object(at: indexPath.item)
+        let asset = userLibraryPhotos.object(at: indexPath.item)
         imageManager.requestImage(for: asset, targetSize: Size.photoSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
             photoCell.setPhoto(image: image)
         })
@@ -67,12 +67,20 @@ extension PhotosDataSource {
     }
     
     private func requestPhotos() {
-        allPhotos = PHAsset.fetchAssets(with: .image, options: nil)
+        let fetchOptions : PHFetchOptions = {
+            let fetchOptions = PHFetchOptions()
+            let numberOfItems = 40
+            fetchOptions.fetchLimit = numberOfItems
+            fetchOptions.includeAllBurstAssets = false
+            fetchOptions.includeAssetSourceTypes = .typeUserLibrary
+            return fetchOptions
+        }()
+        userLibraryPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
     }
     
     private func startCachingImages() {
-        let indexSet = IndexSet(integersIn: 0 ..< allPhotos.count)
-        let assets = allPhotos.objects(at: indexSet)
+        let indexSet = IndexSet(integersIn: 0 ..< userLibraryPhotos.count)
+        let assets = userLibraryPhotos.objects(at: indexSet)
         imageManager.startCachingImages(for: assets,
                                         targetSize: Size.photoSize,
                                         contentMode: .aspectFill,
@@ -85,8 +93,8 @@ extension PhotosDataSource: PHPhotoLibraryChangeObserver {
     
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         DispatchQueue.main.sync {
-            if let changes = changeInstance.changeDetails(for: allPhotos) {
-                allPhotos = changes.fetchResultAfterChanges
+            if let changes = changeInstance.changeDetails(for: userLibraryPhotos) {
+                userLibraryPhotos = changes.fetchResultAfterChanges
                 NotificationCenter.default.post(name: Notification.Name.notificationPhotoLibraryDidChange,
                                                 object: self,
                                                 userInfo: ["changes" : changes])
@@ -97,5 +105,5 @@ extension PhotosDataSource: PHPhotoLibraryChangeObserver {
     private func sharePhotoLibraryChanges() {
         PHPhotoLibrary.shared().register(self)
     }
-
+    
 }
