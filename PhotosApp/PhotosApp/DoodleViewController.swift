@@ -20,6 +20,7 @@ final class DoodleViewController: UICollectionViewController {
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
+        collectionView.register(DoodleCell.self, forCellWithReuseIdentifier: DoodleCell.reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {
@@ -28,13 +29,17 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         doodleImageManager.decodeDoodleImagesJSONData()
         setupDoodleViewController()
     }
     
-    @objc func touchUpCloseButton() {
-        self.dismiss(animated: true, completion: nil)
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return doodleImageManager.count ?? 0
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCell.reuseIdentifier, for: indexPath)
+        return doodleCell
     }
     
     private func setupDoodleViewController() {
@@ -43,13 +48,8 @@ final class DoodleViewController: UICollectionViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(touchUpCloseButton))
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return doodleImageManager.count ?? 0
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "doodleCell", for: indexPath)
-        return doodleCell
+    @objc func touchUpCloseButton() {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
