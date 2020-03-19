@@ -10,16 +10,9 @@ import UIKit
 
 class DoodleDataSource: NSObject, UICollectionViewDataSource {
     
+    private let doodleImageManager = DoodleImageManager()
     private var doodleImageInfos = [DoodleImageInfo]()
     private var doodleCells = [DoodleCell]()
-    private var doodleImages = [UIImage]() {
-        didSet {
-            NotificationCenter.default.post(name: Notification.Name.notificationDoodleImageDidChange,
-                                            object: nil)
-        }
-    }
-    
-    private let doodleImageManager = DoodleImageManager()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("doodleImageInfos?.count: \(String(describing: doodleImageInfos.count))")
@@ -29,7 +22,6 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
             DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
-        print("doodleImages.count: \(doodleImages.count)")
         print("indexPath.item: \(indexPath.item)")
         doodleCells.append(doodleCell)
         return doodleCell
@@ -53,7 +45,6 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
             index += 1
         }
     }
-    
     
     private func decodeDoodleImagesJSONData(resultHandler: @escaping ([DoodleImageInfo]?) -> ()) {
         DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
