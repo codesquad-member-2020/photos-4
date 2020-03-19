@@ -13,6 +13,7 @@
 		5A8341A92422FF9E00F20FAA /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341A82422FF9E00F20FAA /* Notification.swift */; };
 		5A8341AD2423072500F20FAA /* DataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341AC2423072500F20FAA /* DataDecoder.swift */; };
 		5A8341AF242307B400F20FAA /* DoodleImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341AE242307B300F20FAA /* DoodleImageManager.swift */; };
+		5A8341B12423094F00F20FAA /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341B02423094F00F20FAA /* ReusableView.swift */; };
 		78321E1324221B4D00EA370C /* DoodleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78321E1224221B4D00EA370C /* DoodleViewController.swift */; };
 		78DE94C1241F4484004201E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE94C0241F4484004201E3 /* AppDelegate.swift */; };
 		78DE94C3241F4484004201E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE94C2241F4484004201E3 /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		5A8341A82422FF9E00F20FAA /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		5A8341AC2423072500F20FAA /* DataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDecoder.swift; sourceTree = "<group>"; };
 		5A8341AE242307B300F20FAA /* DoodleImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleImageManager.swift; sourceTree = "<group>"; };
+		5A8341B02423094F00F20FAA /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		78321E1224221B4D00EA370C /* DoodleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleViewController.swift; sourceTree = "<group>"; };
 		78DE94BD241F4484004201E3 /* PhotosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DE94C0241F4484004201E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				5A83419A2420A72100F20FAA /* PhotoCell.swift */,
+				5A8341B02423094F00F20FAA /* ReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				78DE94C5241F4484004201E3 /* PhotosViewController.swift in Sources */,
 				5A8341AD2423072500F20FAA /* DataDecoder.swift in Sources */,
 				5A83419B2420A72100F20FAA /* PhotoCell.swift in Sources */,
+				5A8341B12423094F00F20FAA /* ReusableView.swift in Sources */,
 				78DE94C1241F4484004201E3 /* AppDelegate.swift in Sources */,
 				5A8341AF242307B400F20FAA /* DoodleImageManager.swift in Sources */,
 				78DE94C3241F4484004201E3 /* SceneDelegate.swift in Sources */,

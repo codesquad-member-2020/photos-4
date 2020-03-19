@@ -8,17 +8,7 @@
 
 import UIKit
 
-protocol ReuseableView: class { }
-
-extension ReuseableView where Self: UIView {
-    
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-    
-}
-
-final class PhotoCell: UICollectionViewCell, ReuseableView {
+final class PhotoCell: UICollectionViewCell, ReusableView {
 
     @IBOutlet weak var photoImageView: UIImageView!
 
