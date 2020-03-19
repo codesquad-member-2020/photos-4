@@ -30,7 +30,7 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doodleDataSource.setupPhotos()
+        doodleDataSource.decodeDoodleImagesJSONData()
         collectionView.dataSource = doodleDataSource
         setupDoodleViewController()
     }
