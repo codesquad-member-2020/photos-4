@@ -9,10 +9,10 @@
 import UIKit
 
 class DoodleDataSource: NSObject, UICollectionViewDataSource {
-    
-    private let doodleImageManager = DoodleImageManager()
+
+    private var doodleImages = [UIImage]()
     private var doodleImageInfos = [DoodleImageInfo]()
-    private var doodleCells = [DoodleCell]()
+    private let doodleImageManager = DoodleImageManager()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("doodleImageInfos?.count: \(String(describing: doodleImageInfos.count))")
@@ -22,27 +22,30 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
             DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
-        print("indexPath.item: \(indexPath.item)")
-        doodleCells.append(doodleCell)
+        if doodleImages.count != 0 , indexPath.item < doodleImages.count {
+            doodleCell.setPhoto(image: doodleImages[indexPath.item])
+        }
         return doodleCell
     }
     
     func setupPhotos(resultHandler: @escaping () -> ()) {
         decodeDoodleImagesJSONData { doodleImageInfos in
-            resultHandler()
-            var index = 0
+            var count = 0
             doodleImageInfos?.forEach({
                 self.doodleImageManager.downloadImage(urlString: $0.imageURLString) { image in
-                    print("good")
                     if let image = image {
-                        DispatchQueue.main.async {
-                            print("index: \(index)")
-                            self.doodleCells[index].setPhoto(image: image)
-                        }
+                        self.doodleImages.append(image)
+                    }
+                    count += 1
+                    if count == 40 {
+                        resultHandler()
+                        print(count)
+                    } else if count == self.doodleImageInfos.count {
+                        resultHandler()
+                        print(count)
                     }
                 }
             })
-            index += 1
         }
     }
     
@@ -54,7 +57,6 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
                                         self.doodleImageInfos = doodleImageInfos
                                         resultHandler(doodleImageInfos)
                                     }
-        
         }
     }
     
