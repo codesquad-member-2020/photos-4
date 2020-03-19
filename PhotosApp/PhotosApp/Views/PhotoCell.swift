@@ -8,11 +8,19 @@
 
 import UIKit
 
-final class PhotoCell: UICollectionViewCell {
+protocol ReuseableView: class { }
+
+extension ReuseableView where Self: UIView {
+    
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+    
+}
+
+final class PhotoCell: UICollectionViewCell, ReuseableView {
 
     @IBOutlet weak var photoImageView: UIImageView!
-    
-    static let identifier = "photoCell"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
