@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 final class PhotosViewController: UIViewController {
-
+    
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBAction func touchUpAddButton(_ sender: UIBarButtonItem) {
         let doodleViewController = DoodleViewController(collectionViewLayout: UICollectionViewLayout())
@@ -29,11 +29,17 @@ final class PhotosViewController: UIViewController {
             }
         })
             else {
-            return
+                return
         }
         photosDataSource.setupPhotos()
         setupPhotosCollectionView()
         photosCollectionView.reloadData()
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.notificationPhotoLibraryDidChange,
+                                               object: photosDataSource,
+                                               queue: nil) { [weak self] notification in
+                                                self?.photoLibraryDidChange(notification)
+        }
     }
     
     private func setupPhotosCollectionView() {
@@ -42,9 +48,18 @@ final class PhotosViewController: UIViewController {
     
 }
 
-extension PhotosViewController: PhotosDataSourceDelegate {
+extension PhotosViewController {
     
-    func allPhotosDidChange(changes: PHFetchResultChangeDetails<PHAsset>) {
+    private func photoLibraryDidChange(_ notification: Notification) {
+        guard let userInfo = notification.userInfo, let value = userInfo["changes"]
+            else {
+                return
+        }
+        let changes = value as! PHFetchResultChangeDetails<PHAsset>
+        updateCollectionView(changes)
+    }
+    
+    private func updateCollectionView(_ changes: PHFetchResultChangeDetails<PHAsset>) {
         if changes.hasIncrementalChanges {
             photosCollectionView.performBatchUpdates({
                 if let removed = changes.removedIndexes, removed.count > 0 {

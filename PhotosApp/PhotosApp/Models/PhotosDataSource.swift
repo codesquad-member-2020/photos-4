@@ -15,16 +15,8 @@ enum Size {
     
 }
 
-protocol PhotosDataSourceDelegate {
-    
-    func allPhotosDidChange(changes: PHFetchResultChangeDetails<PHAsset>)
-    
-}
-
-
 class PhotosDataSource: NSObject, UICollectionViewDataSource {
-    
-    var delegate: PhotosDataSourceDelegate!
+
     private var allPhotos: PHFetchResult<PHAsset>!
     private let imageManager = PHCachingImageManager()
     let photosSectionIndex = 0
@@ -95,7 +87,9 @@ extension PhotosDataSource: PHPhotoLibraryChangeObserver {
         DispatchQueue.main.sync {
             if let changes = changeInstance.changeDetails(for: allPhotos) {
                 allPhotos = changes.fetchResultAfterChanges
-                delegate.allPhotosDidChange(changes: changes)
+                NotificationCenter.default.post(name: Notification.Name.notificationPhotoLibraryDidChange,
+                                                object: self,
+                                                userInfo: ["changes" : changes])
             }
         }
     }

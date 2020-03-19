@@ -11,6 +11,7 @@
 		5A8341A0242211C500F20FAA /* DoodleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A83419F242211C500F20FAA /* DoodleImage.swift */; };
 		5A8341A324222A8000F20FAA /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341A224222A8000F20FAA /* Util.swift */; };
 		5A8341A62422460B00F20FAA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341A52422460B00F20FAA /* Network.swift */; };
+		5A8341A92422FF9E00F20FAA /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341A82422FF9E00F20FAA /* Notification.swift */; };
 		78321E1324221B4D00EA370C /* DoodleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78321E1224221B4D00EA370C /* DoodleViewController.swift */; };
 		78DE94C1241F4484004201E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE94C0241F4484004201E3 /* AppDelegate.swift */; };
 		78DE94C3241F4484004201E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE94C2241F4484004201E3 /* SceneDelegate.swift */; };
@@ -26,6 +27,7 @@
 		5A83419F242211C500F20FAA /* DoodleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleImage.swift; sourceTree = "<group>"; };
 		5A8341A224222A8000F20FAA /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		5A8341A52422460B00F20FAA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		5A8341A82422FF9E00F20FAA /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		78321E1224221B4D00EA370C /* DoodleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleViewController.swift; sourceTree = "<group>"; };
 		78DE94BD241F4484004201E3 /* PhotosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DE94C0241F4484004201E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		5A8341A72422FF3200F20FAA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5A8341A82422FF9E00F20FAA /* Notification.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		78AD6AFD2420BD3F00976C13 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		78DE94BF241F4484004201E3 /* PhotosApp */ = {
 			isa = PBXGroup;
 			children = (
+				5A8341A72422FF3200F20FAA /* Extensions */,
 				5A8341A4242245F900F20FAA /* Network */,
 				5A8341A124222A5600F20FAA /* Utils */,
 				5A83419C2422018200F20FAA /* Models */,
@@ -194,6 +205,7 @@
 				5A8341A324222A8000F20FAA /* Util.swift in Sources */,
 				78DE94C3241F4484004201E3 /* SceneDelegate.swift in Sources */,
 				5A8341A62422460B00F20FAA /* Network.swift in Sources */,
+				5A8341A92422FF9E00F20FAA /* Notification.swift in Sources */,
 				78321E1324221B4D00EA370C /* DoodleViewController.swift in Sources */,
 				5A8341A0242211C500F20FAA /* DoodleImage.swift in Sources */,
 				78DE94D7241F4A91004201E3 /* PhotosDataSource.swift in Sources */,
