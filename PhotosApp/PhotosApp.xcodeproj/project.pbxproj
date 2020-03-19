@@ -64,8 +64,8 @@
 			children = (
 				78DE94D6241F4A91004201E3 /* PhotosDataSource.swift */,
 				78928E89242316CA00FF99DD /* DoodleDataSource.swift */,
-				5A83419F242211C500F20FAA /* DoodleImage.swift */,
 				5A8341AE242307B300F20FAA /* DoodleImageManager.swift */,
+				5A83419F242211C500F20FAA /* DoodleImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

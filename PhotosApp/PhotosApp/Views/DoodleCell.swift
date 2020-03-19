@@ -12,6 +12,7 @@ final class DoodleCell: UICollectionViewCell, ReusableView {
     
     private var doodleImageView: UIImageView {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         return imageView
     }
@@ -27,7 +28,7 @@ final class DoodleCell: UICollectionViewCell, ReusableView {
     func setPhoto(image: UIImage?) {
         guard let doodleImage = image
             else {
-            return
+                return
         }
         doodleImageView.image = doodleImage
     }
