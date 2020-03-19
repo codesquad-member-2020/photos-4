@@ -38,6 +38,7 @@ final class DoodleViewController: UICollectionViewController {
         setupDoodleViewController()
         collectionView.dataSource = doodleDataSource
         collectionView.backgroundColor = .white
+        
     }
     
     private func setupDoodleViewController() {
