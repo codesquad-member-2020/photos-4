@@ -28,9 +28,19 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         doodleImageManager.decodeDoodleImagesJSONData()
+        setupDoodleViewController()
+    }
+    
+    @objc func touchUpCloseButton() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func setupDoodleViewController() {
         view.backgroundColor = .darkGray
         navigationItem.title = "Doodles"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(touchUpCloseButton))
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
