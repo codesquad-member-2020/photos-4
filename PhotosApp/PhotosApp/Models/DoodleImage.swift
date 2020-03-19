@@ -24,14 +24,3 @@ struct DoodleImage: Codable {
     }
     
 }
-
-extension DateFormatter {
-    
-    static let yyyyMMdd : DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyyMMdd"
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        return dateFormatter
-    }()
-    
-}
