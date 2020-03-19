@@ -6,10 +6,11 @@
 //  Copyright © 2020 jinie. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class DoodleImageManager {
     
+
     private var doodleImages: [DoodleImageInfo]?
     var doodleImageDatas = [Data]()
     var count: Int? {
@@ -26,20 +27,14 @@ class DoodleImageManager {
         }
     }
     
-    func downloadImages() {
-        guard let doodleImages = doodleImages
-            else {
-            return
-        }
-        var index = 0
-        doodleImages.forEach { doodleImage in
-            Network.excuteURLSession(from: doodleImage.imageURLString) { (data) in
-                if let imageData = data {
-                    self.doodleImageDatas[index] = imageData
+    func downloadImage(urlString: String, resultHandler: @escaping (UIImage?) -> ()) {
+        Network.excuteURLSession(from: urlString) { (data) in
+            if let imageData = data {
+                if let image = UIImage(data: imageData) {
+                    resultHandler(image)
                 }
             }
-            index += 1 
         }
     }
-
+    
 }

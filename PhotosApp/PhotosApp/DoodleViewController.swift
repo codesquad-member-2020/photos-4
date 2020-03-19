@@ -30,9 +30,15 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.dataSource = doodleDataSource
+        doodleDataSource.setupPhotos {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
         setupDoodleViewController()
-        collectionView.reloadData()
+        collectionView.dataSource = doodleDataSource
+        collectionView.backgroundColor = .white
+        setObserver()
     }
     
     private func setupDoodleViewController() {
@@ -45,4 +51,12 @@ final class DoodleViewController: UICollectionViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    private func setObserver() {
+        NotificationCenter.default.addObserver(forName: Notification.Name.notificationDoodleImageDidChange,
+                                               object: nil, queue: nil) { [weak self] _ in
+                                                
+        }
+    }
+    
 }
+
