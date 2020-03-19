@@ -16,7 +16,7 @@ enum URLInfo {
 
 final class DoodleViewController: UICollectionViewController {
     
-    private var doodleImages: [DoodleImage]?
+    private let doodleImageManager = DoodleImageManager()
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
@@ -28,22 +28,13 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        decodeDoodleImagesJSONData()
+        doodleImageManager.decodeDoodleImagesJSONData()
         view.backgroundColor = .darkGray
         navigationItem.title = "Doodles"
     }
     
-    private func decodeDoodleImagesJSONData() {
-        DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
-                            type: [DoodleImage].self) { doodleImages in
-                                if let doodleImages = doodleImages {
-                                    self.doodleImages = doodleImages
-                                }
-        }
-    }
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return doodleImages?.count ?? 0
+        return doodleImageManager.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
