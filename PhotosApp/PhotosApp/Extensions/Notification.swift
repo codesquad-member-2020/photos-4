@@ -10,6 +10,7 @@ import Foundation
 
 extension Notification.Name {
     
-    static let notificationPhotoLibraryDidChange = Notification.Name("notificationPhotoLibraryDidChange")
+    static let notificationPhotoLibraryDidChange = Notification.Name("photoLibraryDidChange")
+    static let notificationDoodleImageDidChange = Notification.Name("doodleImageDidChange")
     
 }

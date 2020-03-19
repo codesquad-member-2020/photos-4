@@ -10,32 +10,58 @@ import UIKit
 
 class DoodleDataSource: NSObject, UICollectionViewDataSource {
     
-    private var doodleImageInfos: [DoodleImageInfo]?
+    private var doodleImageInfos = [DoodleImageInfo]()
+    private var doodleCells = [DoodleCell]()
+    private var doodleImages = [UIImage]() {
+        didSet {
+            NotificationCenter.default.post(name: Notification.Name.notificationDoodleImageDidChange,
+                                            object: nil)
+        }
+    }
+    
     private let doodleImageManager = DoodleImageManager()
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return doodleImageInfos?.count ?? 0
+        print("doodleImageInfos?.count: \(String(describing: doodleImageInfos.count))")
+        return doodleImageInfos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
             DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
-        if let doodleImageInfos = doodleImageInfos {
-            let doodleImageInfo = doodleImageInfos[indexPath.item]
-            doodleImageManager.downloadImage(urlString: doodleImageInfo.imageURLString) { image in
-                doodleCell.setPhoto(image: image)
-            }
-        }
+        print("doodleImages.count: \(doodleImages.count)")
+        print("indexPath.item: \(indexPath.item)")
+        doodleCells.append(doodleCell)
         return doodleCell
     }
-
-    func decodeDoodleImagesJSONData() {
+    
+    func setupPhotos(resultHandler: @escaping () -> ()) {
+        decodeDoodleImagesJSONData { doodleImageInfos in
+            resultHandler()
+            var index = 0
+            doodleImageInfos?.forEach({
+                self.doodleImageManager.downloadImage(urlString: $0.imageURLString) { image in
+                    if let image = image {
+                        DispatchQueue.main.async {
+                            self.doodleCells[index].setPhoto(image: image)
+                        }
+                    }
+                }
+            })
+            index += 1
+        }
+    }
+    
+    
+    private func decodeDoodleImagesJSONData(resultHandler: @escaping ([DoodleImageInfo]?) -> ()) {
         DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
                                    type: [DoodleImageInfo].self,
                                    dateDecodingStrategy: .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
-                                if let doodleImageInfos = doodleImageInfos {
-                                    self.doodleImageInfos = doodleImageInfos
-                                }
+                                    if let doodleImageInfos = doodleImageInfos {
+                                        self.doodleImageInfos = doodleImageInfos
+                                        resultHandler(doodleImageInfos)
+                                    }
+        
         }
     }
     
