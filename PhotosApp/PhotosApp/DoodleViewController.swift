@@ -34,7 +34,7 @@ final class DoodleViewController: UICollectionViewController {
     }
     
     private func decodeDoodleImagesJSONData() {
-        Util.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
+        DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
                             type: [DoodleImage].self) { doodleImages in
                                 if let doodleImages = doodleImages {
                                     self.doodleImages = doodleImages

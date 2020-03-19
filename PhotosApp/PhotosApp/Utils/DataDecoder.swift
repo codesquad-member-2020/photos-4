@@ -1,14 +1,14 @@
 //
-//  Util.swift
+//  DataDecoder.swift
 //  PhotosApp
 //
-//  Created by kimdo2297 on 2020/03/18.
+//  Created by kimdo2297 on 2020/03/19.
 //  Copyright © 2020 jinie. All rights reserved.
 //
 
 import Foundation
 
-class Util {
+class DataDecoder {
     
     static func decodeJSONData<T>(from urlString: String, type: T.Type, completion: @escaping (T?) -> ())
         where T: Decodable {
