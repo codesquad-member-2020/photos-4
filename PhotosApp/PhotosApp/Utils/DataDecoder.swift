@@ -16,17 +16,21 @@ class DataDecoder {
                                   completion: @escaping (T?) -> ())
         where T: Decodable {
             Network.excuteURLSession(from: urlString) { (data) in
-                if let data = data {
-                    do {
+                guard let data = data else {
+                    return
+                }
+                do {
+                    let jsonDecoder: JSONDecoder = {
                         let jsonDecoder = JSONDecoder()
                         if let dateDecodingStrategy = dateDecodingStrategy {
                             jsonDecoder.dateDecodingStrategy = dateDecodingStrategy
                         }
-                        let T = try jsonDecoder.decode(T.self, from: data)
-                        completion(T)
-                    } catch let error {
-                        print(error.localizedDescription)
-                    }
+                        return jsonDecoder
+                    }()
+                    let T = try jsonDecoder.decode(T.self, from: data)
+                    completion(T)
+                } catch let error {
+                    print(error.localizedDescription)
                 }
             }
     }

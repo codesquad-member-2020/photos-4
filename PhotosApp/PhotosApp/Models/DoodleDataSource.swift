@@ -34,14 +34,18 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
             var doodleCount = 0
             doodleImageInfos?.forEach({
                 self.doodleImageManager.downloadImage(urlString: $0.imageURLString) { image in
-                    if let image = image {
-                        self.doodleImages.append(image)
+                    guard let image = image else {
+                        return
                     }
-                    if (doodleCount == numberOfItems) ||
-                        (self.doodleImages.count == self.doodleImageInfos.count) {
-                        reloadData()
-                    }
+                    self.doodleImages.append(image)
                     doodleCount += 1
+                    
+                    guard doodleCount == numberOfItems ||
+                        self.doodleImages.count == self.doodleImageInfos.count
+                        else {
+                            return
+                    }
+                    reloadData()
                 }
             })
         }
@@ -51,10 +55,12 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
         DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
                                    type: [DoodleImageInfo].self,
                                    dateDecodingStrategy: .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
-                                    if let doodleImageInfos = doodleImageInfos {
-                                        self.doodleImageInfos = doodleImageInfos
-                                        resultHandler(doodleImageInfos)
+                                    guard let doodleImageInfos = doodleImageInfos
+                                        else {
+                                            return
                                     }
+                                    self.doodleImageInfos = doodleImageInfos
+                                    resultHandler(doodleImageInfos)
         }
     }
     
