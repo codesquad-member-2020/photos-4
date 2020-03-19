@@ -10,19 +10,29 @@ import UIKit
 
 final class DoodleCell: UICollectionViewCell, ReusableView {
     
-    private var doodleImageView: UIImageView {
+    private lazy var doodleImageView : UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-    }
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupDoodleImageView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setupDoodleImageView()
+    }
+    
+    func setupDoodleImageView() {
+        addSubview(doodleImageView)
+        doodleImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        doodleImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        doodleImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        doodleImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
     func setPhoto(image: UIImage?) {
@@ -31,7 +41,6 @@ final class DoodleCell: UICollectionViewCell, ReusableView {
                 return
         }
         doodleImageView.image = doodleImage
-        contentView.addSubview(doodleImageView)
     }
     
 }

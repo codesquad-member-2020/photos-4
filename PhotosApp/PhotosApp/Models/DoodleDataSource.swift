@@ -13,13 +13,13 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
     private let doodleImageManager = DoodleImageManager()
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return doodleImageManager.count ?? 0
+        return doodleImageManager.count ?? 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
             DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
-        doodleCell.setPhoto(image: UIImage(data: doodleImageManager.doodleImageDatas[indexPath.item]) ?? nil)
+        doodleCell.setPhoto()
         return doodleCell
     }
     
