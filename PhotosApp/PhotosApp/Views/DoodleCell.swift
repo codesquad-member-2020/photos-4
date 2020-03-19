@@ -10,7 +10,11 @@ import UIKit
 
 final class DoodleCell: UICollectionViewCell, ReusableView {
     
-    @IBOutlet weak var doodleImageView: UIImageView!
+    private var doodleImageView: UIImageView {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

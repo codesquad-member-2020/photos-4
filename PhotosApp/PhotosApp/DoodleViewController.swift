@@ -16,7 +16,7 @@ enum URLInfo {
 
 final class DoodleViewController: UICollectionViewController {
     
-    private let doodleImageManager = DoodleImageManager()
+    private let doodleDataSource = DoodleDataSource()
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
@@ -29,17 +29,8 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doodleImageManager.decodeDoodleImagesJSONData()
+        collectionView.dataSource = doodleDataSource
         setupDoodleViewController()
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return doodleImageManager.count ?? 0
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCell.reuseIdentifier, for: indexPath)
-        return doodleCell
     }
     
     private func setupDoodleViewController() {
