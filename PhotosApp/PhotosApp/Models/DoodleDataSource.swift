@@ -21,4 +21,8 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
         return doodleCell
     }
     
+    func requestPhotos() {
+        doodleImageManager.decodeDoodleImagesJSONData()
+    }
+    
 }

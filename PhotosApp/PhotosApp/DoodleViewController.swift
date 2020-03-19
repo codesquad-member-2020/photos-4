@@ -29,6 +29,7 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        doodleDataSource.requestPhotos()
         collectionView.dataSource = doodleDataSource
         setupDoodleViewController()
     }

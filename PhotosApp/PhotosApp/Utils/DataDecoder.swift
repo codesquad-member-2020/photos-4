@@ -10,7 +10,8 @@ import Foundation
 
 class DataDecoder {
     
-    static func decodeJSONData<T>(from urlString: String, type: T.Type,
+    static func decodeJSONData<T>(from urlString: String,
+                                  type: T.Type,
                                   dateDecodingStrategy: JSONDecoder.DateDecodingStrategy?,
                                   completion: @escaping (T?) -> ())
         where T: Decodable {
