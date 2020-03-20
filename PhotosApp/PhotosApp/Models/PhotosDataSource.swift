@@ -9,12 +9,6 @@
 import UIKit
 import Photos
 
-enum Size {
-    
-    static let photoSize = CGSize(width: 100, height: 100)
-    
-}
-
 class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
     private var userLibraryPhotos: PHFetchResult<PHAsset>!
@@ -30,7 +24,7 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
             PhotoCell.reuseIdentifier, for:indexPath) as! PhotoCell
         
         let asset = userLibraryPhotos.object(at: indexPath.item)
-        imageManager.requestImage(for: asset, targetSize: Size.photoSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
+        imageManager.requestImage(for: asset, targetSize: PhotoCell.cellSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
             photoCell.setPhoto(image: image)
         })
         return photoCell
@@ -82,7 +76,7 @@ extension PhotosDataSource {
         let indexSet = IndexSet(integersIn: 0 ..< userLibraryPhotos.count)
         let assets = userLibraryPhotos.objects(at: indexSet)
         imageManager.startCachingImages(for: assets,
-                                        targetSize: Size.photoSize,
+                                        targetSize: PhotoCell.cellSize,
                                         contentMode: .aspectFill,
                                         options: nil)
     }

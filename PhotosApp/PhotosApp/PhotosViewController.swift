@@ -13,8 +13,11 @@ final class PhotosViewController: UIViewController {
     
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBAction func touchUpAddButton(_ sender: UIBarButtonItem) {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 110, height: 50)
+        let layout: UICollectionViewFlowLayout = {
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = DoodleCell.cellSize
+            return layout
+        }()
         let doodleViewController = DoodleViewController(collectionViewLayout: layout)
         let doodleNavigationController = UINavigationController(rootViewController: doodleViewController)
         doodleNavigationController.modalPresentationStyle = .fullScreen

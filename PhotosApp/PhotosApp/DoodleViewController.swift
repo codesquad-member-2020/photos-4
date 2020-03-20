@@ -44,7 +44,10 @@ final class DoodleViewController: UICollectionViewController {
     private func setupDoodleViewController() {
         view.backgroundColor = .darkGray
         navigationItem.title = "Doodles"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(touchUpCloseButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(touchUpCloseButton))
     }
     
     @objc func touchUpCloseButton() {

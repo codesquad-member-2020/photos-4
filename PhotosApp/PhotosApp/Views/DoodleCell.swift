@@ -19,8 +19,10 @@ extension DateFormatter {
     
 }
 
-final class DoodleCell: UICollectionViewCell, ReusableView {
+final class DoodleCell: UICollectionViewCell, ImageColletcionCell, ReusableView {
     
+    static var cellSize = CGSize(width: 100, height: 50)
+
     private var doodleImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
