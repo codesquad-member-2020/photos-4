@@ -21,6 +21,27 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
     }
     private let doodleImageManager = DoodleImageManager()
     
+    override init() {
+        super.init()
+        decodeDoodleImagesJSONData()
+    }
+    
+    func decodeDoodleImagesJSONData() {
+        DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
+                                   type: [DoodleImageInfo].self,
+                                   dateDecodingStrategy:
+                                   .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
+                                    guard let doodleImageInfos = doodleImageInfos
+                                        else {
+                                            return
+                                    }
+                                    self.doodleImageInfos = doodleImageInfos
+        }
+    }
+}
+
+extension DoodleDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return doodleImageInfos.count
     }
@@ -45,19 +66,6 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
         }
         doodleCell.setPhoto(image: doodleImages[itemCount])
         return doodleCell
-    }
-    
-    func decodeDoodleImagesJSONData() {
-        DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
-                                   type: [DoodleImageInfo].self,
-                                   dateDecodingStrategy:
-                                   .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
-                                    guard let doodleImageInfos = doodleImageInfos
-                                        else {
-                                            return
-                                    }
-                                    self.doodleImageInfos = doodleImageInfos
-        }
     }
     
 }
