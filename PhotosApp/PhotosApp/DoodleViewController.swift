@@ -65,14 +65,18 @@ final class DoodleViewController: UICollectionViewController {
         guard let indexPath = collectionView.indexPathForItem(at: location) else { return }
         indexPathOfPressedCell = indexPath
         guard let pressedCell = collectionView.cellForItem(at: indexPath) else { return }
-        let menuItem = UIMenuItem(title: "Save", action: #selector(saveImage))
+        let menuItem = UIMenuItem(title: "Save", action: #selector(savePhoto))
         UIMenuController.shared.menuItems = [menuItem]
         UIMenuController.shared.showMenu(from: pressedCell, rect: pressedCell.contentView.frame)
         pressedCell.becomeFirstResponder()
     }
     
-    @objc func saveImage() {
-        
+    @objc func savePhoto() {
+        guard let indexPath = indexPathOfPressedCell else { return }
+        let pressedCell = collectionView.cellForItem(at: indexPath) as! DoodleCell
+        if let photo = pressedCell.photo() {
+            UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil)
+        }
     }
     
 }

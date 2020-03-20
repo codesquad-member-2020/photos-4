@@ -57,11 +57,12 @@ final class DoodleCell: UICollectionViewCell, ImageColletcionCell, ReusableView 
     }
     
     func setPhoto(image: UIImage?) {
-        guard let doodleImage = image
-            else {
-                return
-        }
+        guard let doodleImage = image else { return }
         doodleImageView.image = doodleImage
+    }
+    
+    func photo() -> UIImage? {
+        return doodleImageView.image
     }
     
 }
