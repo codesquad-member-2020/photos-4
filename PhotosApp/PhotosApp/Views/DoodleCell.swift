@@ -8,8 +8,21 @@
 
 import UIKit
 
-final class DoodleCell: UICollectionViewCell, ReusableView {
+extension DateFormatter {
     
+    static let yyyyMMdd : DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        return dateFormatter
+    }()
+    
+}
+
+final class DoodleCell: UICollectionViewCell, ImageColletcionCell, ReusableView {
+    
+    static var cellSize = CGSize(width: 100, height: 50)
+
     override var canBecomeFirstResponder: Bool {
         return true
     }
@@ -33,10 +46,14 @@ final class DoodleCell: UICollectionViewCell, ReusableView {
     
     func setupDoodleImageView() {
         addSubview(doodleImageView)
-        doodleImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        doodleImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        doodleImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        doodleImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        doodleImageView.topAnchor.constraint(equalTo:
+            self.topAnchor).isActive = true
+        doodleImageView.leadingAnchor.constraint(equalTo:
+            self.leadingAnchor).isActive = true
+        doodleImageView.trailingAnchor.constraint(equalTo:
+            self.trailingAnchor).isActive = true
+        doodleImageView.bottomAnchor.constraint(equalTo:
+            self.bottomAnchor).isActive = true
     }
     
     func setPhoto(image: UIImage?) {

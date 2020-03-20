@@ -8,8 +8,10 @@
 
 import UIKit
 
-final class PhotoCell: UICollectionViewCell, ReusableView {
-
+final class PhotoCell: UICollectionViewCell, ImageColletcionCell, ReusableView {
+    
+    static var cellSize = CGSize(width: 100, height: 100)
+    
     @IBOutlet weak var photoImageView: UIImageView!
 
     override init(frame: CGRect) {

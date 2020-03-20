@@ -29,26 +29,25 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doodleDataSource.setupPhotos {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
         setupCollectionView()
         setNavigationBar()
         setupGestureRecognizer()
+        setObservers()
     }
     
     private func setupCollectionView() {
         collectionView.dataSource = doodleDataSource
-        collectionView.register(DoodleCell.self, forCellWithReuseIdentifier:
-        DoodleCell.reuseIdentifier)
+        collectionView.register(DoodleCell.self,
+                                forCellWithReuseIdentifier: DoodleCell.reuseIdentifier)
         collectionView.backgroundColor = .darkGray
     }
     
     private func setNavigationBar() {
         navigationItem.title = "Doodles"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(touchUpCloseButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(touchUpCloseButton))
     }
     
     @objc func touchUpCloseButton() {
@@ -78,6 +77,27 @@ final class DoodleViewController: UICollectionViewController {
         if let photo = pressedCell.photo() {
             UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil)
         }
+    }
+    
+}
+
+
+extension DoodleViewController {
+    
+    private func setObservers() {
+        NotificationCenter.default.addObserver(forName:
+            DoodleDataSource
+                .notifiactionDoodleImageInfosDidChange,
+                                               object: doodleDataSource,
+                                               queue: nil) { [weak self] _ in
+                                                DispatchQueue.main.async {
+                                                    self?.reloadCollectionView()
+                                                }
+        }
+    }
+    
+    private func reloadCollectionView() {
+        self.collectionView.reloadData()
     }
     
 }
