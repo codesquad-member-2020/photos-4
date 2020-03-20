@@ -37,7 +37,7 @@ final class PhotosViewController: UIViewController {
         setupPhotosCollectionView()
         photosCollectionView.reloadData()
         
-        NotificationCenter.default.addObserver(forName: Notification.Name.notificationPhotoLibraryDidChange,
+        NotificationCenter.default.addObserver(forName: PhotosDataSource.notificationPhotoLibraryDidChange,
                                                object: photosDataSource,
                                                queue: nil) { [weak self] notification in
                                                 self?.photoLibraryDidChange(notification)

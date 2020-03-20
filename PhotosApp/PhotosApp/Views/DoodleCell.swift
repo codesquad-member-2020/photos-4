@@ -8,6 +8,17 @@
 
 import UIKit
 
+extension DateFormatter {
+    
+    static let yyyyMMdd : DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        return dateFormatter
+    }()
+    
+}
+
 final class DoodleCell: UICollectionViewCell, ReusableView {
     
     private var doodleImageView : UIImageView = {
