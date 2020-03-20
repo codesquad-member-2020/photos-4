@@ -41,7 +41,7 @@ final class DoodleViewController: UICollectionViewController {
         collectionView.dataSource = doodleDataSource
         collectionView.backgroundColor = .white
         collectionView.register(DoodleCell.self, forCellWithReuseIdentifier:
-        DoodleCell.reuseIdentifier)
+            DoodleCell.reuseIdentifier)
     }
     
     private func setupDoodleViewController() {
@@ -63,18 +63,18 @@ extension DoodleViewController {
     
     private func setObservers() {
         NotificationCenter.default.addObserver(forName:
-                                               DoodleDataSource
-                                                .notifiactionDoodleImageInfosDidChange,
+            DoodleDataSource
+                .notifiactionDoodleImageInfosDidChange,
                                                object: doodleDataSource,
                                                queue: nil) { [weak self] _ in
-                                                self?.reloadCollectionView()
+                                                DispatchQueue.main.async {
+                                                    self?.reloadCollectionView()
+                                                }
         }
     }
     
     private func reloadCollectionView() {
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
+        self.collectionView.reloadData()
     }
     
 }
