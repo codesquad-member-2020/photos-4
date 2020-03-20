@@ -19,8 +19,11 @@ final class PhotosViewController: UIViewController {
             return layout
         }()
         let doodleViewController = DoodleViewController(collectionViewLayout: layout)
-        let doodleNavigationController = UINavigationController(rootViewController: doodleViewController)
-        doodleNavigationController.modalPresentationStyle = .fullScreen
+        let doodleNavigationController: UINavigationController = {
+            let controller = UINavigationController(rootViewController: doodleViewController)
+            controller.modalPresentationStyle = .fullScreen
+            return controller
+        }()
         self.present(doodleNavigationController, animated: true, completion: nil)
     }
     

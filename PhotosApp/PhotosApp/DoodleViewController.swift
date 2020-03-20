@@ -62,9 +62,16 @@ final class DoodleViewController: UICollectionViewController {
     
     @objc func showMenuItem(gesture: UILongPressGestureRecognizer) {
         let location = gesture.location(in: self.collectionView)
-        guard let indexPath = collectionView.indexPathForItem(at: location) else { return }
+        guard let indexPath = collectionView.indexPathForItem(at: location)
+            else {
+                return
+        }
         indexPathOfPressedCell = indexPath
-        guard let pressedCell = collectionView.cellForItem(at: indexPath) else { return }
+        guard let pressedCell = collectionView.cellForItem(at: indexPath)
+            else {
+                return
+                
+        }
         let menuItem = UIMenuItem(title: "Save", action: #selector(savePhoto))
         UIMenuController.shared.menuItems = [menuItem]
         UIMenuController.shared.showMenu(from: pressedCell, rect: pressedCell.contentView.frame)
