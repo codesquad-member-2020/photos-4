@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum URLInfo {
-    
-    static let addressAboutDoodleDatas = "https://public.codesquad.kr/jk/doodle.json"
-    
-}
-
 final class DoodleViewController: UICollectionViewController {
     
     private let doodleDataSource = DoodleDataSource()
@@ -55,7 +49,8 @@ final class DoodleViewController: UICollectionViewController {
     }
     
     func setupGestureRecognizer() {
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(showMenuItem))
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self,
+                                                                      action: #selector(showMenuItem))
         longPressGestureRecognizer.minimumPressDuration = 0.5
         self.collectionView.addGestureRecognizer(longPressGestureRecognizer)
     }
@@ -92,9 +87,7 @@ final class DoodleViewController: UICollectionViewController {
 extension DoodleViewController {
     
     private func setObservers() {
-        NotificationCenter.default.addObserver(forName:
-            DoodleDataSource
-                .notifiactionDoodleImageInfosDidChange,
+        NotificationCenter.default.addObserver(forName: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
                                                object: doodleDataSource,
                                                queue: nil) { [weak self] _ in
                                                 DispatchQueue.main.async {

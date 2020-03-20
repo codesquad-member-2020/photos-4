@@ -10,6 +10,7 @@ import UIKit
 
 class DoodleDataSource: NSObject, UICollectionViewDataSource {
     
+    static let addressAboutDoodleDatas = "https://public.codesquad.kr/jk/doodle.json"
     static let notifiactionDoodleImageInfosDidChange = Notification.Name("doodleImageInfosDidChange")
     
     private var doodleImages = [UIImage]()
@@ -27,15 +28,15 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func decodeDoodleImagesJSONData() {
-        DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
+        DataDecoder.decodeJSONData(from: DoodleDataSource.addressAboutDoodleDatas,
                                    type: [DoodleImageInfo].self,
                                    dateDecodingStrategy:
-                                   .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
-                                    guard let doodleImageInfos = doodleImageInfos
-                                        else {
-                                            return
-                                    }
-                                    self.doodleImageInfos = doodleImageInfos
+        .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
+            guard let doodleImageInfos = doodleImageInfos
+                else {
+                    return
+            }
+            self.doodleImageInfos = doodleImageInfos
         }
     }
 }
