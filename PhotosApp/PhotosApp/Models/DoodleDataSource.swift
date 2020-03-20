@@ -10,8 +10,15 @@ import UIKit
 
 class DoodleDataSource: NSObject, UICollectionViewDataSource {
     
+    static let notifiactionDoodleImageInfosDidChange = Notification.Name("doodleImageInfosDidChange")
+    
     private var doodleImages = [UIImage]()
-    private var doodleImageInfos = [DoodleImageInfo]()
+    private var doodleImageInfos = [DoodleImageInfo]() {
+        didSet {
+            NotificationCenter.default.post(name: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
+                                            object: self)
+        }
+    }
     private let doodleImageManager = DoodleImageManager()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -21,37 +28,26 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
             DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
-        if doodleImages.count != 0 ,
-            indexPath.item < doodleImages.count {
-            doodleCell.setPhoto(image: doodleImages[indexPath.item])
-        }
-        return doodleCell
-    }
-    
-    func setupPhotos(reloadData: @escaping () -> ()) {
-        let numberOfItems = 40
-        decodeDoodleImagesJSONData { doodleImageInfos in
-            var doodleCount = 0
-            doodleImageInfos?.forEach({
-                self.doodleImageManager.downloadImage(urlString: $0.imageURLString) { image in
+        let itemCount = indexPath.item
+        guard itemCount < doodleImages.count
+            else {
+                doodleImageManager.downloadImage(urlString:
+                doodleImageInfos[itemCount].imageURLString) { image in
                     guard let image = image else {
                         return
                     }
                     self.doodleImages.append(image)
-                    doodleCount += 1
-                    
-                    guard doodleCount == numberOfItems ||
-                        self.doodleImages.count == self.doodleImageInfos.count
-                        else {
-                            return
+                    DispatchQueue.main.async {
+                        doodleCell.setPhoto(image: image)
                     }
-                    reloadData()
                 }
-            })
+                return doodleCell
         }
+        doodleCell.setPhoto(image: doodleImages[itemCount])
+        return doodleCell
     }
     
-    private func decodeDoodleImagesJSONData(resultHandler: @escaping ([DoodleImageInfo]?) -> ()) {
+    func decodeDoodleImagesJSONData() {
         DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
                                    type: [DoodleImageInfo].self,
                                    dateDecodingStrategy: .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
@@ -60,7 +56,6 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
                                             return
                                     }
                                     self.doodleImageInfos = doodleImageInfos
-                                    resultHandler(doodleImageInfos)
         }
     }
     
