@@ -17,6 +17,7 @@ enum URLInfo {
 final class DoodleViewController: UICollectionViewController {
     
     private let doodleDataSource = DoodleDataSource()
+    private var indexPathOfPressedCell: IndexPath?
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
@@ -28,24 +29,20 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-    }
-    
-    private func setup() {
         setupCollectionView()
-        setupDoodleViewController()
+        setNavigationBar()
+        setupGestureRecognizer()
         setObservers()
     }
     
     private func setupCollectionView() {
         collectionView.dataSource = doodleDataSource
-        collectionView.backgroundColor = .white
-        collectionView.register(DoodleCell.self, forCellWithReuseIdentifier:
-            DoodleCell.reuseIdentifier)
+        collectionView.register(DoodleCell.self,
+                                forCellWithReuseIdentifier: DoodleCell.reuseIdentifier)
+        collectionView.backgroundColor = .darkGray
     }
     
-    private func setupDoodleViewController() {
-        view.backgroundColor = .darkGray
+    private func setNavigationBar() {
         navigationItem.title = "Doodles"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
                                                             style: .plain,
@@ -57,7 +54,29 @@ final class DoodleViewController: UICollectionViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func setupGestureRecognizer() {
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(showMenuItem))
+        longPressGestureRecognizer.minimumPressDuration = 0.5
+        self.collectionView.addGestureRecognizer(longPressGestureRecognizer)
+    }
+    
+    @objc func showMenuItem(gesture: UILongPressGestureRecognizer) {
+        let location = gesture.location(in: self.collectionView)
+        guard let indexPath = collectionView.indexPathForItem(at: location) else { return }
+        indexPathOfPressedCell = indexPath
+        guard let pressedCell = collectionView.cellForItem(at: indexPath) else { return }
+        let menuItem = UIMenuItem(title: "Save", action: #selector(saveImage))
+        UIMenuController.shared.menuItems = [menuItem]
+        UIMenuController.shared.showMenu(from: pressedCell, rect: pressedCell.contentView.frame)
+        pressedCell.becomeFirstResponder()
+    }
+    
+    @objc func saveImage() {
+        
+    }
+    
 }
+
 
 extension DoodleViewController {
     
@@ -78,4 +97,3 @@ extension DoodleViewController {
     }
     
 }
-
