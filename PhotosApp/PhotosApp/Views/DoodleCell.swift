@@ -42,10 +42,14 @@ final class DoodleCell: UICollectionViewCell, ImageColletcionCell, ReusableView 
     
     func setupDoodleImageView() {
         addSubview(doodleImageView)
-        doodleImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        doodleImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        doodleImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        doodleImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        doodleImageView.topAnchor.constraint(equalTo:
+            self.topAnchor).isActive = true
+        doodleImageView.leadingAnchor.constraint(equalTo:
+            self.leadingAnchor).isActive = true
+        doodleImageView.trailingAnchor.constraint(equalTo:
+            self.trailingAnchor).isActive = true
+        doodleImageView.bottomAnchor.constraint(equalTo:
+            self.bottomAnchor).isActive = true
     }
     
     func setPhoto(image: UIImage?) {

@@ -50,7 +50,8 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
     func decodeDoodleImagesJSONData() {
         DataDecoder.decodeJSONData(from: URLInfo.addressAboutDoodleDatas,
                                    type: [DoodleImageInfo].self,
-                                   dateDecodingStrategy: .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
+                                   dateDecodingStrategy:
+                                   .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
                                     guard let doodleImageInfos = doodleImageInfos
                                         else {
                                             return

@@ -15,16 +15,22 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
     private let imageManager = PHCachingImageManager()
     let photosSectionIndex = 0
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return userLibraryPhotos.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier:
             PhotoCell.reuseIdentifier, for:indexPath) as! PhotoCell
         
         let asset = userLibraryPhotos.object(at: indexPath.item)
-        imageManager.requestImage(for: asset, targetSize: PhotoCell.cellSize, contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
+        imageManager.requestImage(for: asset,
+                                  targetSize: PhotoCell.cellSize,
+                                  contentMode: .aspectFill,
+                                  options: nil,
+                                  resultHandler: { image, _ in
             photoCell.setPhoto(image: image)
         })
         return photoCell
@@ -91,7 +97,8 @@ extension PhotosDataSource: PHPhotoLibraryChangeObserver {
         DispatchQueue.main.sync {
             if let changes = changeInstance.changeDetails(for: userLibraryPhotos) {
                 userLibraryPhotos = changes.fetchResultAfterChanges
-                NotificationCenter.default.post(name: PhotosDataSource.notificationPhotoLibraryDidChange,
+                NotificationCenter.default.post(name: PhotosDataSource
+                                                .notificationPhotoLibraryDidChange,
                                                 object: self,
                                                 userInfo: ["changes" : changes])
             }

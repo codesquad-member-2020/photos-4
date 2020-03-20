@@ -39,16 +39,19 @@ final class PhotosViewController: UIViewController {
         photosDataSource.setupPhotos()
         setupPhotosCollectionView()
         photosCollectionView.reloadData()
-        
+        setObservers()
+    }
+    
+    private func setupPhotosCollectionView() {
+        photosCollectionView.dataSource = photosDataSource
+    }
+    
+    private func setObservers() {
         NotificationCenter.default.addObserver(forName: PhotosDataSource.notificationPhotoLibraryDidChange,
                                                object: photosDataSource,
                                                queue: nil) { [weak self] notification in
                                                 self?.photoLibraryDidChange(notification)
         }
-    }
-    
-    private func setupPhotosCollectionView() {
-        photosCollectionView.dataSource = photosDataSource
     }
     
 }

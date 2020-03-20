@@ -34,11 +34,7 @@ final class DoodleViewController: UICollectionViewController {
         setupDoodleViewController()
         collectionView.dataSource = doodleDataSource
         collectionView.backgroundColor = .white
-        NotificationCenter.default.addObserver(forName: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
-                                               object: doodleDataSource,
-                                               queue: nil) { [weak self] _ in
-                                                self?.reloadCollectionView()
-        }
+        setObservers()
     }
     
     private func setupDoodleViewController() {
@@ -52,6 +48,16 @@ final class DoodleViewController: UICollectionViewController {
     
     @objc func touchUpCloseButton() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func setObservers() {
+        NotificationCenter.default.addObserver(forName:
+                                               DoodleDataSource
+                                                .notifiactionDoodleImageInfosDidChange,
+                                               object: doodleDataSource,
+                                               queue: nil) { [weak self] _ in
+                                                self?.reloadCollectionView()
+        }
     }
     
     private func reloadCollectionView() {
