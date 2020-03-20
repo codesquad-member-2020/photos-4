@@ -21,7 +21,7 @@ extension DateFormatter {
 
 final class DoodleCell: UICollectionViewCell, ImageColletcionCell, ReusableView {
     
-    static var cellSize = CGSize(width: 100, height: 50)
+    static var cellSize = CGSize(width: 110, height: 50)
 
     override var canBecomeFirstResponder: Bool {
         return true
