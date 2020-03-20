@@ -35,10 +35,7 @@ final class PhotosViewController: UIViewController {
             if isAuthorized {
                 self.viewDidLoad()
             }
-        })
-            else {
-                return
-        }
+        }) else { return }
         photosDataSource.setupPhotos()
         setupPhotosCollectionView()
         photosCollectionView.reloadData()
@@ -62,10 +59,8 @@ final class PhotosViewController: UIViewController {
 extension PhotosViewController {
     
     private func photoLibraryDidChange(_ notification: Notification) {
-        guard let userInfo = notification.userInfo, let value = userInfo["changes"]
-            else {
-                return
-        }
+        guard let userInfo = notification.userInfo,
+            let value = userInfo["changes"] else { return }
         let changes = value as! PHFetchResultChangeDetails<PHAsset>
         updateCollectionView(changes)
     }

@@ -16,9 +16,7 @@ class DataDecoder {
                                   completion: @escaping (T?) -> ())
         where T: Decodable {
             Network.excuteURLSession(from: urlString) { (data) in
-                guard let data = data else {
-                    return
-                }
+                guard let data = data else { return }
                 do {
                     let jsonDecoder: JSONDecoder = {
                         let jsonDecoder = JSONDecoder()

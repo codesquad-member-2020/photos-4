@@ -32,10 +32,7 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
                                    type: [DoodleImageInfo].self,
                                    dateDecodingStrategy:
         .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
-            guard let doodleImageInfos = doodleImageInfos
-                else {
-                    return
-            }
+            guard let doodleImageInfos = doodleImageInfos else { return }
             self.doodleImageInfos = doodleImageInfos
         }
     }
@@ -55,9 +52,7 @@ extension DoodleDataSource {
             else {
                 doodleImageManager.downloadImage(urlString:
                 doodleImageInfos[itemCount].imageURLString) { image in
-                    guard let image = image else {
-                        return
-                    }
+                    guard let image = image else { return }
                     self.doodleImages.append(image)
                     DispatchQueue.main.async {
                         doodleCell.setPhoto(image: image)
