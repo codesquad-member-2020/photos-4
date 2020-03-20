@@ -20,8 +20,6 @@ final class DoodleViewController: UICollectionViewController {
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
-        collectionView.register(DoodleCell.self, forCellWithReuseIdentifier:
-            DoodleCell.reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {
@@ -30,11 +28,21 @@ final class DoodleViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         doodleDataSource.decodeDoodleImagesJSONData()
+    }
+    
+    private func setup() {
+        setupCollectionView()
         setupDoodleViewController()
+        setObservers()
+    }
+    
+    private func setupCollectionView() {
         collectionView.dataSource = doodleDataSource
         collectionView.backgroundColor = .white
-        setObservers()
+        collectionView.register(DoodleCell.self, forCellWithReuseIdentifier:
+        DoodleCell.reuseIdentifier)
     }
     
     private func setupDoodleViewController() {
@@ -49,6 +57,10 @@ final class DoodleViewController: UICollectionViewController {
     @objc func touchUpCloseButton() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+}
+
+extension DoodleViewController {
     
     private func setObservers() {
         NotificationCenter.default.addObserver(forName:
