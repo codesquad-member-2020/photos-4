@@ -16,7 +16,7 @@ final class DoodleCell: UICollectionViewCell, ReusableView {
     
     private var doodleImageView : UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -24,13 +24,11 @@ final class DoodleCell: UICollectionViewCell, ReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupDoodleImageView()
-        displaySaveMenuItem()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupDoodleImageView()
-        displaySaveMenuItem()
     }
     
     func setupDoodleImageView() {
@@ -47,23 +45,6 @@ final class DoodleCell: UICollectionViewCell, ReusableView {
                 return
         }
         doodleImageView.image = doodleImage
-    }
-    
-    func displaySaveMenuItem() {
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self.contentView, action: #selector(cellDidTap))
-        longPressGestureRecognizer.minimumPressDuration = 0.5
-        self.contentView.addGestureRecognizer(longPressGestureRecognizer)
-    }
-    
-    @objc func cellDidTap() {
-        let menuItem = UIMenuItem(title: "Save", action: #selector(saveDidTap))
-        UIMenuController.shared.menuItems = [menuItem]
-        UIMenuController.shared.showMenu(from: self, rect: self.contentView.frame)
-        self.contentView.becomeFirstResponder()
-    }
-    
-    @objc func saveDidTap() {
-        
     }
     
 }
