@@ -10,7 +10,7 @@ import Foundation
 
 final class Network {
     
-    static func excuteURLSession(from urlString: String, completion: @escaping (Data?) -> ()) {
+    static func excuteURLSession(from urlString: String, completionHandler: @escaping (Data?) -> ()) {
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil
@@ -19,7 +19,7 @@ final class Network {
                     return
             }
             guard let data = data else { return }
-            completion(data)
+            completionHandler(data)
         }.resume()
     }
     

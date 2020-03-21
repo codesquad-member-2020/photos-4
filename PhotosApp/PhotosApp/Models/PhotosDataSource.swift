@@ -39,7 +39,7 @@ final class PhotosDataSource: NSObject, UICollectionViewDataSource {
 
 extension PhotosDataSource {
     
-    func isPhotoAuthorized(completion: @escaping (Bool) -> ()) -> Bool {
+    func isPhotoAuthorized(completionHandler: @escaping (Bool) -> ()) -> Bool {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         switch photoAuthorizationStatus {
         case .authorized:
@@ -48,9 +48,9 @@ extension PhotosDataSource {
             PHPhotoLibrary.requestAuthorization({ status in
                 switch status {
                 case .authorized:
-                    completion(true)
+                    completionHandler(true)
                 default:
-                    completion(false)
+                    completionHandler(false)
                 }
             })
         default:

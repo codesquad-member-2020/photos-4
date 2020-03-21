@@ -10,11 +10,11 @@ import UIKit
 
 final class DoodleImageManager {
     
-    func downloadImage(urlString: String, resultHandler: @escaping (UIImage?) -> ()) {
+    func downloadImage(urlString: String, completionHandler: @escaping (UIImage?) -> ()) {
         Network.excuteURLSession(from: urlString) { (data) in
             guard let imageData = data,
                 let image = UIImage(data: imageData) else { return }
-            resultHandler(image)
+            completionHandler(image)
         }
     }
     

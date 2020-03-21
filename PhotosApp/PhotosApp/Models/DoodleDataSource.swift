@@ -64,11 +64,11 @@ extension DoodleDataSource {
             return doodleCell
     }
     
-    private func downloadImage(at index: Int, completion: @escaping (UIImage) -> ()) {
+    private func downloadImage(at index: Int, completionHandler: @escaping (UIImage) -> ()) {
         doodleImageManager.downloadImage(urlString:
         doodleImageInfos[index].imageURLString) { image in
             guard let image = image else { return }
-            completion(image)
+            completionHandler(image)
         }
     }
     

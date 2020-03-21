@@ -13,7 +13,7 @@ final class DataDecoder {
     static func decodeJSONData<T>(from urlString: String,
                                   type: T.Type,
                                   dateDecodingStrategy: JSONDecoder.DateDecodingStrategy?,
-                                  completion: @escaping (T?) -> ())
+                                  completionHandler: @escaping (T?) -> ())
         where T: Decodable {
             Network.excuteURLSession(from: urlString) { (data) in
                 guard let data = data else { return }
@@ -26,7 +26,7 @@ final class DataDecoder {
                         return jsonDecoder
                     }()
                     let T = try jsonDecoder.decode(T.self, from: data)
-                    completion(T)
+                    completionHandler(T)
                 } catch let error {
                     print(error.localizedDescription)
                 }
