@@ -42,28 +42,33 @@ extension DoodleDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int)
         -> Int {
-        return doodleImageInfos.count
+            return doodleImageInfos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
         -> UICollectionViewCell {
-        let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
-            DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
-        let itemCount = indexPath.item
-        guard itemCount < doodleImages.count
-            else {
-                doodleImageManager.downloadImage(urlString:
-                doodleImageInfos[itemCount].imageURLString) { image in
-                    guard let image = image else { return }
+            let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
+                DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
+            let itemCount = indexPath.item
+            if itemCount < doodleImages.count {
+                doodleCell.setPhoto(image: doodleImages[itemCount])
+            } else {
+                downloadImage(at: itemCount) { image in
                     self.doodleImages.append(image)
                     DispatchQueue.main.async {
                         doodleCell.setPhoto(image: image)
                     }
                 }
-                return doodleCell
+            }
+            return doodleCell
+    }
+    
+    private func downloadImage(at index: Int, completion: @escaping (UIImage) -> ()) {
+        doodleImageManager.downloadImage(urlString:
+        doodleImageInfos[index].imageURLString) { image in
+            guard let image = image else { return }
+            completion(image)
         }
-        doodleCell.setPhoto(image: doodleImages[itemCount])
-        return doodleCell
     }
     
 }
