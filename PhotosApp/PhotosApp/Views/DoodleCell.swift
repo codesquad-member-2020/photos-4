@@ -61,8 +61,4 @@ final class DoodleCell: UICollectionViewCell, ImageColletcionCell, ReusableView 
         doodleImageView.image = doodleImage
     }
     
-    func photo() -> UIImage? {
-        return doodleImageView.image
-    }
-    
 }

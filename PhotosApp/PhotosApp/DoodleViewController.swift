@@ -30,7 +30,7 @@ final class DoodleViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        setNavigationBar()
+        setupNavigationBar()
         setupGestureRecognizer()
         setObservers()
     }
@@ -42,7 +42,7 @@ final class DoodleViewController: UICollectionViewController {
         collectionView.backgroundColor = .darkGray
     }
     
-    private func setNavigationBar() {
+    private func setupNavigationBar() {
         navigationItem.title = "Doodles"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
                                                             style: .plain,
@@ -62,28 +62,18 @@ final class DoodleViewController: UICollectionViewController {
     
     @objc func showMenuItem(gesture: UILongPressGestureRecognizer) {
         let location = gesture.location(in: self.collectionView)
-        guard let indexPath = collectionView.indexPathForItem(at: location)
-            else {
-                return
-        }
+        guard let indexPath = collectionView.indexPathForItem(at: location) else { return }
         indexPathOfPressedCell = indexPath
-        guard let pressedCell = collectionView.cellForItem(at: indexPath)
-            else {
-                return
-                
-        }
-        let menuItem = UIMenuItem(title: "Save", action: #selector(savePhoto))
+        guard let pressedCell = collectionView.cellForItem(at: indexPath) else { return }
+        let menuItem = UIMenuItem(title: "Save", action: #selector(saveImage))
         UIMenuController.shared.menuItems = [menuItem]
         UIMenuController.shared.showMenu(from: pressedCell, rect: pressedCell.contentView.frame)
         pressedCell.becomeFirstResponder()
     }
     
-    @objc func savePhoto() {
+    @objc func saveImage() {
         guard let indexPath = indexPathOfPressedCell else { return }
-        let pressedCell = collectionView.cellForItem(at: indexPath) as! DoodleCell
-        if let photo = pressedCell.photo() {
-            UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil)
-        }
+        doodleDataSource.saveImage(indexPath: indexPath)
     }
     
 }

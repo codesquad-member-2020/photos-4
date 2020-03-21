@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class DoodleDataSource: NSObject, UICollectionViewDataSource {
     
@@ -37,6 +38,12 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
                                     }
                                     self.doodleImageInfos = doodleImageInfos
         }
+    }
+    
+    func saveImage(indexPath: IndexPath) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAsset(from: self.doodleImages[indexPath.item])
+        }, completionHandler: nil)
     }
 }
 
