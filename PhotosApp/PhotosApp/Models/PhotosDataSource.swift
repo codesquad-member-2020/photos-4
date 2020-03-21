@@ -22,9 +22,8 @@ class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier:
-            PhotoCell.reuseIdentifier, for:indexPath) as! PhotoCell
-        
+        let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseIdentifier,
+                                                           for:indexPath) as! PhotoCell
         let asset = userLibraryPhotos.object(at: indexPath.item)
         imageManager.requestImage(for: asset,
                                   targetSize: PhotoCell.cellSize,

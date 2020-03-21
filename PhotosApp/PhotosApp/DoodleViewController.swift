@@ -63,7 +63,8 @@ final class DoodleViewController: UICollectionViewController {
         guard let pressedCell = collectionView.cellForItem(at: indexPath) else { return }
         let menuItem = UIMenuItem(title: "Save", action: #selector(savePhoto))
         UIMenuController.shared.menuItems = [menuItem]
-        UIMenuController.shared.showMenu(from: pressedCell, rect: pressedCell.contentView.frame)
+        UIMenuController.shared.showMenu(from: pressedCell,
+                                         rect: pressedCell.contentView.frame)
         pressedCell.becomeFirstResponder()
     }
     

@@ -40,11 +40,13 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
 
 extension DoodleDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int)
+        -> Int {
         return doodleImageInfos.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
+        -> UICollectionViewCell {
         let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
             DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
         let itemCount = indexPath.item
