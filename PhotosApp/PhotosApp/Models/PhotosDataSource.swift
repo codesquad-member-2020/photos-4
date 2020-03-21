@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class PhotosDataSource: NSObject, UICollectionViewDataSource {
+final class PhotosDataSource: NSObject, UICollectionViewDataSource {
     
     private var userLibraryPhotos: PHFetchResult<PHAsset>!
     private let imageManager = PHCachingImageManager()

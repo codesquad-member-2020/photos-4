@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DoodleDataSource: NSObject, UICollectionViewDataSource {
+final class DoodleDataSource: NSObject, UICollectionViewDataSource {
     
     static let addressAboutDoodleDatas = "https://public.codesquad.kr/jk/doodle.json"
     static let notifiactionDoodleImageInfosDidChange = Notification.Name("doodleImageInfosDidChange")
@@ -36,6 +36,7 @@ class DoodleDataSource: NSObject, UICollectionViewDataSource {
             self.doodleImageInfos = doodleImageInfos
         }
     }
+    
 }
 
 extension DoodleDataSource {
@@ -47,8 +48,8 @@ extension DoodleDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
         -> UICollectionViewCell {
-            let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier:
-                DoodleCell.reuseIdentifier, for: indexPath) as! DoodleCell
+            let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCell.reuseIdentifier,
+                                                                for: indexPath) as! DoodleCell
             let itemCount = indexPath.item
             if itemCount < doodleImages.count {
                 doodleCell.setPhoto(image: doodleImages[itemCount])
