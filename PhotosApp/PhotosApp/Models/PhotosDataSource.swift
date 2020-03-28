@@ -96,8 +96,7 @@ extension PhotosDataSource: PHPhotoLibraryChangeObserver {
         DispatchQueue.main.sync {
             if let changes = changeInstance.changeDetails(for: userLibraryPhotos) {
                 userLibraryPhotos = changes.fetchResultAfterChanges
-                NotificationCenter.default.post(name: PhotosDataSource
-                                                .notificationPhotoLibraryDidChange,
+                NotificationCenter.default.post(name: Self.notificationPhotoLibraryDidChange,
                                                 object: self,
                                                 userInfo: ["changes" : changes])
             }

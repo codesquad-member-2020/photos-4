@@ -34,7 +34,7 @@ final class DoodleDataSource: NSObject, UICollectionViewDataSource {
     
     private var doodleImageInfos = [DoodleImageInfo]() {
         didSet {
-            NotificationCenter.default.post(name: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
+            NotificationCenter.default.post(name: Self.notifiactionDoodleImageInfosDidChange,
                                             object: self)
         }
     }
