@@ -15,8 +15,8 @@ final class DoodleDataSource: NSObject, UICollectionViewDataSource {
     static let notifiactionDoodleImageInfosDidChange = Notification.Name("doodleImageInfosDidChange")
     
     private var doodleImages = [UIImage]()
-
     private let doodleImageManager = DoodleImageManager()
+    private var doodleImageInfos = [DoodleImageInfo]()
     
     override init() {
         super.init()
@@ -30,13 +30,8 @@ final class DoodleDataSource: NSObject, UICollectionViewDataSource {
         .formatted(DateFormatter.yyyyMMdd)) { doodleImageInfos in
             guard let doodleImageInfos = doodleImageInfos else { return }
             self.doodleImageInfos = doodleImageInfos
-        }
-    }
-    
-    private var doodleImageInfos = [DoodleImageInfo]() {
-        didSet {
             NotificationCenter.default.post(name: Self.notifiactionDoodleImageInfosDidChange,
-                                            object: self)
+                                                     object: self)
         }
     }
     
