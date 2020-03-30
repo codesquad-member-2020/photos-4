@@ -10,7 +10,11 @@ import UIKit
 
 final class DoodleViewController: UICollectionViewController {
     
-    private let doodleDataSource = DoodleDataSource()
+    private lazy var doodleDataSource: DoodleDataSource = {
+        let dataSource = DoodleDataSource()
+        dataSource.collectionView = collectionView
+        return dataSource
+    }()
     private var indexPathOfPressedCell: IndexPath?
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {

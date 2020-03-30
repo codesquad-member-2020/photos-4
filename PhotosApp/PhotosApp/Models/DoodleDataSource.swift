@@ -11,12 +11,14 @@ import Photos
 
 final class DoodleDataSource: NSObject, UICollectionViewDataSource {
     
+    
     static let addressAboutDoodleDatas = "https://public.codesquad.kr/jk/doodle.json"
     static let notifiactionDoodleImageInfosDidChange = Notification.Name("doodleImageInfosDidChange")
     
     private var doodleImages = [UIImage]()
     private let doodleImageManager = DoodleImageManager()
     private var doodleImageInfos = [DoodleImageInfo]()
+    var collectionView: UICollectionView!
     
     override init() {
         super.init()
@@ -58,21 +60,20 @@ extension DoodleDataSource {
             if itemCount < doodleImages.count {
                 doodleCell.setPhoto(image: doodleImages[itemCount])
             } else {
-                downloadImage(at: itemCount) { image in
-                    self.doodleImages.append(image)
-                    DispatchQueue.main.async {
-                        doodleCell.setPhoto(image: image)
-                    }
-                }
+                requestImage(at: indexPath)
             }
             return doodleCell
     }
     
-    private func downloadImage(at index: Int, completionHandler: @escaping (UIImage) -> ()) {
+    private func requestImage(at indexPath: IndexPath) {
         doodleImageManager.downloadImage(urlString:
-        doodleImageInfos[index].imageURLString) { image in
+        doodleImageInfos[indexPath.item].imageURLString) { image in
             guard let image = image else { return }
-            completionHandler(image)
+            self.doodleImages.append(image)
+            OperationQueue.main.addOperation {
+                guard let doodleCell = self.collectionView.cellForItem(at: indexPath) as? DoodleCell else { return }
+                doodleCell.setPhoto(image: image)
+            }
         }
     }
     
