@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class Network {
+final class NetworkManager {
     
     static func excuteURLSession(from urlString: String, completionHandler: @escaping (Data?) -> ()) {
         guard let url = URL(string: urlString) else { return }

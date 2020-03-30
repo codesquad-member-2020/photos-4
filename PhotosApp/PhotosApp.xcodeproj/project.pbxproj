@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A83419B2420A72100F20FAA /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A83419A2420A72100F20FAA /* PhotoCell.swift */; };
 		5A8341A0242211C500F20FAA /* DoodleImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A83419F242211C500F20FAA /* DoodleImageInfo.swift */; };
-		5A8341A62422460B00F20FAA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341A52422460B00F20FAA /* Network.swift */; };
+		5A8341A62422460B00F20FAA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341A52422460B00F20FAA /* NetworkManager.swift */; };
 		5A8341AD2423072500F20FAA /* DataDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341AC2423072500F20FAA /* DataDecoder.swift */; };
 		5A8341AF242307B400F20FAA /* DoodleImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341AE242307B300F20FAA /* DoodleImageManager.swift */; };
 		5A8341B12423094F00F20FAA /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8341B02423094F00F20FAA /* ReusableView.swift */; };
@@ -29,7 +29,7 @@
 /* Begin PBXFileReference section */
 		5A83419A2420A72100F20FAA /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		5A83419F242211C500F20FAA /* DoodleImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleImageInfo.swift; sourceTree = "<group>"; };
-		5A8341A52422460B00F20FAA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		5A8341A52422460B00F20FAA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5A8341AC2423072500F20FAA /* DataDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDecoder.swift; sourceTree = "<group>"; };
 		5A8341AE242307B300F20FAA /* DoodleImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleImageManager.swift; sourceTree = "<group>"; };
 		5A8341B02423094F00F20FAA /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 		5A8341A4242245F900F20FAA /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5A8341A52422460B00F20FAA /* Network.swift */,
+				5A8341A52422460B00F20FAA /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -212,7 +212,7 @@
 				78DE94C3241F4484004201E3 /* SceneDelegate.swift in Sources */,
 				5A83422D2424619100F20FAA /* ImageColletcionCell.swift in Sources */,
 				78928E8824230D7B00FF99DD /* DoodleCell.swift in Sources */,
-				5A8341A62422460B00F20FAA /* Network.swift in Sources */,
+				5A8341A62422460B00F20FAA /* NetworkManager.swift in Sources */,
 				78321E1324221B4D00EA370C /* DoodleViewController.swift in Sources */,
 				78928E8A242316CA00FF99DD /* DoodleDataSource.swift in Sources */,
 				5A8341A0242211C500F20FAA /* DoodleImageInfo.swift in Sources */,
