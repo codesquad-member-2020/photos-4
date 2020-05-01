@@ -9,7 +9,5 @@
 import UIKit
 
 protocol ImageColletcionCell {
-    
     static var cellSize: CGSize { get set }
-    
 }

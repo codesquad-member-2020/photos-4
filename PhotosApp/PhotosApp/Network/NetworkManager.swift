@@ -9,7 +9,6 @@
 import Foundation
 
 final class NetworkManager {
-    
     static func excuteURLSession(from urlString: String, completionHandler: @escaping (Data?) -> ()) {
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -22,5 +21,4 @@ final class NetworkManager {
             completionHandler(data)
         }.resume()
     }
-    
 }

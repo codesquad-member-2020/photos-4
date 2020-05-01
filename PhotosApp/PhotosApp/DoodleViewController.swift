@@ -9,7 +9,6 @@
 import UIKit
 
 final class DoodleViewController: UICollectionViewController {
-    
     private lazy var doodleDataSource: DoodleDataSource = {
         let dataSource = DoodleDataSource()
         dataSource.collectionView = collectionView
@@ -75,24 +74,22 @@ final class DoodleViewController: UICollectionViewController {
         guard let indexPath = indexPathOfPressedCell else { return }
         doodleDataSource.saveImage(indexPath: indexPath)
     }
-    
 }
 
 
 extension DoodleViewController {
-    
     private func setObservers() {
         NotificationCenter.default.addObserver(forName: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
                                                object: doodleDataSource,
-                                               queue: nil) { [weak self] _ in
-                                                DispatchQueue.main.async {
-                                                    self?.reloadCollectionView()
-                                                }
+                                               queue: nil)
+        { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadCollectionView()
+            }
         }
     }
     
     private func reloadCollectionView() {
         self.collectionView.reloadData()
     }
-    
 }

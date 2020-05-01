@@ -9,7 +9,6 @@
 import Foundation
 
 final class DataDecoder {
-    
     static func decodeJSONData<T>(from urlString: String,
                                   type: T.Type,
                                   dateDecodingStrategy: JSONDecoder.DateDecodingStrategy?,
@@ -32,5 +31,4 @@ final class DataDecoder {
                 }
             }
     }
-    
 }

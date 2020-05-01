@@ -10,8 +10,8 @@ import UIKit
 import Photos
 
 final class PhotosViewController: UIViewController {
-    
     @IBOutlet weak var photosCollectionView: UICollectionView!
+    
     @IBAction func touchUpAddButton(_ sender: UIBarButtonItem) {
         let layout: UICollectionViewFlowLayout = {
             let layout = UICollectionViewFlowLayout()
@@ -53,11 +53,9 @@ final class PhotosViewController: UIViewController {
                                                 self?.photoLibraryDidChange(notification)
         }
     }
-    
 }
 
 extension PhotosViewController {
-    
     private func photoLibraryDidChange(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let value = userInfo["changes"] else { return }
@@ -91,5 +89,4 @@ extension PhotosViewController {
             photosCollectionView.reloadData()
         }
     }
-    
 }

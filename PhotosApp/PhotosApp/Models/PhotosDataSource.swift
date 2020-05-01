@@ -10,7 +10,6 @@ import UIKit
 import Photos
 
 final class PhotosDataSource: NSObject, UICollectionViewDataSource {
-    
     private var userLibraryPhotos: PHFetchResult<PHAsset>!
     private let imageManager = PHCachingImageManager()
     let photosSectionIndex = 0
@@ -34,11 +33,9 @@ final class PhotosDataSource: NSObject, UICollectionViewDataSource {
         })
         return photoCell
     }
-    
 }
 
 extension PhotosDataSource {
-    
     func isPhotoAuthorized(completionHandler: @escaping (Bool) -> ()) -> Bool {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         switch photoAuthorizationStatus {
@@ -85,11 +82,9 @@ extension PhotosDataSource {
                                         contentMode: .aspectFill,
                                         options: nil)
     }
-    
 }
 
 extension PhotosDataSource: PHPhotoLibraryChangeObserver {
-    
     static let notificationPhotoLibraryDidChange = Notification.Name("photoLibraryDidChange")
     
     func photoLibraryDidChange(_ changeInstance: PHChange) {
@@ -106,5 +101,4 @@ extension PhotosDataSource: PHPhotoLibraryChangeObserver {
     private func sharePhotoLibraryChanges() {
         PHPhotoLibrary.shared().register(self)
     }
-    
 }

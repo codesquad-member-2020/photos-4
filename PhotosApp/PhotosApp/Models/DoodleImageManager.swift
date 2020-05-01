@@ -16,5 +16,4 @@ final class DoodleImageManager {
             completionHandler(image)
         }
     }
-    
 }

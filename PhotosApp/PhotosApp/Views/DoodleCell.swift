@@ -9,18 +9,15 @@
 import UIKit
 
 extension DateFormatter {
-    
     static let yyyyMMdd : DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
         dateFormatter.locale = Locale(identifier: "ko_KR")
         return dateFormatter
     }()
-    
 }
 
 final class DoodleCell: UICollectionViewCell, ImageColletcionCell, ReusableView {
-    
     static var cellSize = CGSize(width: 110, height: 50)
 
     override var canBecomeFirstResponder: Bool {

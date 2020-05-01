@@ -10,7 +10,6 @@ import UIKit
 import Photos
 
 final class DoodleDataSource: NSObject, UICollectionViewDataSource {
-    
     static let addressAboutDoodleDatas = "https://public.codesquad.kr/jk/doodle.json"
     static let notifiactionDoodleImageInfosDidChange = Notification.Name("doodleImageInfosDidChange")
     
@@ -45,7 +44,6 @@ final class DoodleDataSource: NSObject, UICollectionViewDataSource {
 }
 
 extension DoodleDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return doodleImageInfos.count
     }
@@ -70,5 +68,4 @@ extension DoodleDataSource {
             completionHandler(image)
         }
     }
-    
 }
