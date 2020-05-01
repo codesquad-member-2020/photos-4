@@ -11,7 +11,6 @@ import Photos
 
 final class DoodleDataSource: NSObject, UICollectionViewDataSource {
     
-    
     static let addressAboutDoodleDatas = "https://public.codesquad.kr/jk/doodle.json"
     static let notifiactionDoodleImageInfosDidChange = Notification.Name("doodleImageInfosDidChange")
     
@@ -33,7 +32,7 @@ final class DoodleDataSource: NSObject, UICollectionViewDataSource {
             guard let doodleImageInfos = doodleImageInfos else { return }
             self.doodleImageInfos = doodleImageInfos
             NotificationCenter.default.post(name: Self.notifiactionDoodleImageInfosDidChange,
-                                                     object: self)
+                                            object: self)
         }
     }
     
@@ -47,33 +46,30 @@ final class DoodleDataSource: NSObject, UICollectionViewDataSource {
 
 extension DoodleDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int)
-        -> Int {
-            return doodleImageInfos.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return doodleImageInfos.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
-        -> UICollectionViewCell {
-            let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCell.reuseIdentifier,
-                                                                for: indexPath) as! DoodleCell
-            let itemCount = indexPath.item
-            if itemCount < doodleImages.count {
-                doodleCell.setPhoto(image: doodleImages[itemCount])
-            } else {
-                requestImage(at: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCell.reuseIdentifier,
+                                                            for: indexPath) as! DoodleCell
+        let itemCount = indexPath.item
+        if itemCount < doodleImages.count {
+            doodleCell.setPhoto(image: doodleImages[itemCount])
+        } else {
+            requestImage(at: indexPath) { image in
+                doodleCell.setPhoto(image: image)
             }
-            return doodleCell
+        }
+        return doodleCell
     }
     
-    private func requestImage(at indexPath: IndexPath) {
+    private func requestImage(at indexPath: IndexPath, completionHandler: @escaping (UIImage?) -> ()) {
         doodleImageManager.downloadImage(urlString:
         doodleImageInfos[indexPath.item].imageURLString) { image in
             guard let image = image else { return }
             self.doodleImages.append(image)
-            OperationQueue.main.addOperation {
-                guard let doodleCell = self.collectionView.cellForItem(at: indexPath) as? DoodleCell else { return }
-                doodleCell.setPhoto(image: image)
-            }
+            completionHandler(image)
         }
     }
     

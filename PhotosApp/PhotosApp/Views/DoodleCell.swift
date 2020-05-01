@@ -44,6 +44,11 @@ final class DoodleCell: UICollectionViewCell, ImageColletcionCell, ReusableView 
         setupDoodleImageView()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        doodleImageView.image = nil
+    }
+    
     func setupDoodleImageView() {
         addSubview(doodleImageView)
         doodleImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -54,7 +59,8 @@ final class DoodleCell: UICollectionViewCell, ImageColletcionCell, ReusableView 
     
     func setPhoto(image: UIImage?) {
         guard let doodleImage = image else { return }
-        doodleImageView.image = doodleImage
+        DispatchQueue.main.async {
+            self.doodleImageView.image = doodleImage
+        }
     }
-    
 }
