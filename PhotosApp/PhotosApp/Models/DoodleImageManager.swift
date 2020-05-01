@@ -9,7 +9,6 @@
 import UIKit
 
 final class DoodleImageManager {
-    
     func downloadImage(urlString: String, completionHandler: @escaping (UIImage?) -> ()) {
         NetworkManager.excuteURLSession(from: urlString) { (data) in
             guard let imageData = data,

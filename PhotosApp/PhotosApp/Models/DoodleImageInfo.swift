@@ -9,7 +9,6 @@
 import Foundation
 
 struct DoodleImageInfo: Codable {
-    
     private let order: String
     private let date: Date
     private let imageURL: URL
@@ -22,5 +21,4 @@ struct DoodleImageInfo: Codable {
         case imageURL = "image"
         case date
     }
-    
 }

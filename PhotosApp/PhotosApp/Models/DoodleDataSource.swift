@@ -53,13 +53,11 @@ extension DoodleDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let doodleCell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleCell.reuseIdentifier,
                                                             for: indexPath) as! DoodleCell
-        let itemCount = indexPath.item
-        if itemCount < doodleImages.count {
-            doodleCell.setPhoto(image: doodleImages[itemCount])
-        } else {
-            requestImage(at: indexPath) { image in
-                doodleCell.setPhoto(image: image)
-            }
+        ImageUseCase.imageData(from: doodleImageInfos[indexPath.item].imageURLString, number: indexPath.item)
+        { imageData -> (Void) in
+            guard let imageData = imageData,
+                let doodleImage = UIImage(data: imageData) else { return }
+            doodleCell.setPhoto(image: doodleImage)
         }
         return doodleCell
     }
