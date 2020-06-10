@@ -31,9 +31,9 @@ final class PhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard photosDataSource.isPhotoAuthorized(completionHandler: { isAuthorized in
+        guard photosDataSource.isPhotoAuthorized(completionHandler: { [weak self] isAuthorized in
             if isAuthorized {
-                self.viewDidLoad()
+                self?.viewDidLoad()
             }
         }) else { return }
         photosDataSource.setupPhotos()
