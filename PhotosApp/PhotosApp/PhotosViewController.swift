@@ -12,6 +12,47 @@ import Photos
 final class PhotosViewController: UIViewController {
     @IBOutlet weak var photosCollectionView: UICollectionView!
     
+    private let photosDataSource = PhotosDataSource()
+    private var token: NSObjectProtocol?
+    
+    deinit {
+        removeObserver()
+    }
+    
+    private func removeObserver() {
+        guard let token = token else { return }
+        NotificationCenter.default.removeObserver(
+            token,
+            name: PhotosDataSource.notificationPhotoLibraryDidChange,
+            object: photosDataSource
+        )
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setObservers()
+        guard photosDataSource.isPhotoAuthorized(completionHandler: { [weak self] isAuthorized in
+            if isAuthorized {
+                self?.viewDidLoad()
+            }
+        }) else { return }
+        photosDataSource.setupPhotos()
+        setupPhotosCollectionView()
+        photosCollectionView.reloadData()
+    }
+    
+    private func setObservers() {
+        token = NotificationCenter.default.addObserver(forName: PhotosDataSource.notificationPhotoLibraryDidChange,
+                                                       object: photosDataSource,
+                                                       queue: nil) { [weak self] notification in
+                                                        self?.photoLibraryDidChange(notification)
+        }
+    }
+    
+    private func setupPhotosCollectionView() {
+        photosCollectionView.dataSource = photosDataSource
+    }
+    
     @IBAction func touchUpAddButton(_ sender: UIBarButtonItem) {
         let layout: UICollectionViewFlowLayout = {
             let layout = UICollectionViewFlowLayout()
@@ -25,33 +66,6 @@ final class PhotosViewController: UIViewController {
             return controller
         }()
         self.present(doodleNavigationController, animated: true, completion: nil)
-    }
-    
-    private let photosDataSource = PhotosDataSource()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        guard photosDataSource.isPhotoAuthorized(completionHandler: { [weak self] isAuthorized in
-            if isAuthorized {
-                self?.viewDidLoad()
-            }
-        }) else { return }
-        photosDataSource.setupPhotos()
-        setupPhotosCollectionView()
-        photosCollectionView.reloadData()
-        setObservers()
-    }
-    
-    private func setupPhotosCollectionView() {
-        photosCollectionView.dataSource = photosDataSource
-    }
-    
-    private func setObservers() {
-        NotificationCenter.default.addObserver(forName: PhotosDataSource.notificationPhotoLibraryDidChange,
-                                               object: photosDataSource,
-                                               queue: nil) { [weak self] notification in
-                                                self?.photoLibraryDidChange(notification)
-        }
     }
 }
 

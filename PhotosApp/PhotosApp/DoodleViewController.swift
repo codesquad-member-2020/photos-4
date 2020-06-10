@@ -15,6 +15,7 @@ final class DoodleViewController: UICollectionViewController {
         return dataSource
     }()
     private var indexPathOfPressedCell: IndexPath?
+    private var token: NSObjectProtocol?
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
@@ -24,12 +25,40 @@ final class DoodleViewController: UICollectionViewController {
         super.init(coder: coder)
     }
     
+    deinit {
+        removeObserver()
+    }
+    
+    private func removeObserver() {
+        guard let token = token else { return }
+        NotificationCenter.default.removeObserver(
+            token,
+            name: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
+            object: doodleDataSource
+        )
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setObservers()
         setupCollectionView()
         setupNavigationBar()
         setupGestureRecognizer()
-        setObservers()
+    }
+    
+    private func setObservers() {
+        NotificationCenter.default.addObserver(forName: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
+                                               object: doodleDataSource,
+                                               queue: nil)
+        { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadCollectionView()
+            }
+        }
+    }
+    
+    private func reloadCollectionView() {
+        self.collectionView.reloadData()
     }
     
     private func setupCollectionView() {
@@ -73,23 +102,5 @@ final class DoodleViewController: UICollectionViewController {
     @objc func saveImage() {
         guard let indexPath = indexPathOfPressedCell else { return }
         doodleDataSource.saveImage(indexPath: indexPath)
-    }
-}
-
-
-extension DoodleViewController {
-    private func setObservers() {
-        NotificationCenter.default.addObserver(forName: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
-                                               object: doodleDataSource,
-                                               queue: nil)
-        { [weak self] _ in
-            DispatchQueue.main.async {
-                self?.reloadCollectionView()
-            }
-        }
-    }
-    
-    private func reloadCollectionView() {
-        self.collectionView.reloadData()
     }
 }
