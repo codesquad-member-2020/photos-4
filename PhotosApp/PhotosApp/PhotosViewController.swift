@@ -13,14 +13,14 @@ final class PhotosViewController: UIViewController {
     @IBOutlet weak var photosCollectionView: UICollectionView!
     
     private let photosDataSource = PhotosDataSource()
-    private var token: NSObjectProtocol?
+    private var observer: NSObjectProtocol?
     
     deinit {
         removeObserver()
     }
     
     private func removeObserver() {
-        guard let token = token else { return }
+        guard let token = observer else { return }
         NotificationCenter.default.removeObserver(
             token,
             name: PhotosDataSource.notificationPhotoLibraryDidChange,
@@ -42,7 +42,7 @@ final class PhotosViewController: UIViewController {
     }
     
     private func setObservers() {
-        token = NotificationCenter.default.addObserver(forName: PhotosDataSource.notificationPhotoLibraryDidChange,
+        observer = NotificationCenter.default.addObserver(forName: PhotosDataSource.notificationPhotoLibraryDidChange,
                                                        object: photosDataSource,
                                                        queue: nil) { [weak self] notification in
                                                         self?.photoLibraryDidChange(notification)

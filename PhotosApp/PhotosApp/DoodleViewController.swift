@@ -15,7 +15,7 @@ final class DoodleViewController: UICollectionViewController {
         return dataSource
     }()
     private var indexPathOfPressedCell: IndexPath?
-    private var token: NSObjectProtocol?
+    private var observer: NSObjectProtocol?
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
@@ -30,7 +30,7 @@ final class DoodleViewController: UICollectionViewController {
     }
     
     private func removeObserver() {
-        guard let token = token else { return }
+        guard let token = observer else { return }
         NotificationCenter.default.removeObserver(
             token,
             name: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
@@ -47,7 +47,7 @@ final class DoodleViewController: UICollectionViewController {
     }
     
     private func setObservers() {
-        NotificationCenter.default.addObserver(forName: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
+        observer = NotificationCenter.default.addObserver(forName: DoodleDataSource.notifiactionDoodleImageInfosDidChange,
                                                object: doodleDataSource,
                                                queue: nil)
         { [weak self] _ in
