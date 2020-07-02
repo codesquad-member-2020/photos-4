@@ -8,20 +8,17 @@
 
 import UIKit
 
-final class PhotoCell: UICollectionViewCell {
-
-    @IBOutlet weak var photoImageView: UIImageView!
+final class PhotoCell: UICollectionViewCell, ImageColletcionCell, ReusableView {
+    static var cellSize = CGSize(width: 100, height: 100)
     
-    static let identifier = "photoCell"
+    @IBOutlet weak var photoImageView: UIImageView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
     }
     
     func setPhoto(image: UIImage?) {
@@ -31,5 +28,4 @@ final class PhotoCell: UICollectionViewCell {
         }
         photoImageView.image = photoImage
     }
-    
 }
